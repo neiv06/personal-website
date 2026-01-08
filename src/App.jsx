@@ -185,7 +185,7 @@ const Portfolio = () => {
   const skills = [
     { 
       category: "Languages", 
-      items: ["Java", "Python", "C", "C++", "Go", "JavaScript", "TypeScript", "HTML/CSS", "XML", "JSON", "Swift", "Bash", "SQL"] 
+      items: ["Java", "Python", "C", "C++", "Go", "JavaScript", "TypeScript", "HTML/CSS", "XML", "JSON", "Swift", "Bash", "SQL", "CUDA"] 
     },
     { 
       category: "Frameworks", 
@@ -193,7 +193,7 @@ const Portfolio = () => {
     },
     { 
       category: "Developer Tools", 
-      items: ["Git", "Github", "Docker", "Railway", "Vercel", "REST APIs", "WebSockets", "MongoDB Atlas", "PostgreSQL", "NPM"] 
+      items: ["Git", "Github", "Docker", "Railway", "Vercel", "REST APIs", "WebSockets", "MongoDB Atlas", "PostgreSQL", "OpenGL"] 
     },
     { 
       category: "Libraries", 
@@ -450,7 +450,7 @@ const Portfolio = () => {
             <div className="flex-1 bg-transparent p-8 rounded-xl border border-gray-700 hover:border-white transition-all hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
             <p className="text-white-300 leading-relaxed text-lg">
               I am a second-year computer science student at UCLA, passionate about building practical applications 
-              that solve real-world problems. I currently looking for a Summer 2026 internship where I can continue 
+              that solve real-world problems. I am currently looking for a Summer 2026 internship where I can continue 
               to build my skills and tackle new challenges.
             </p>
             <br />
