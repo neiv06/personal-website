@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Terminal, Code, Briefcase, User, Award, Building2, MapPin, FileText } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
 import resume from './Neiv_Gupta_Resume (4).pdf';
+import cudaFireImage from './images/CudaFire.png';
+import bruinMarketImage from './images/BruinMarket.png';
+import yumImage from './images/YUM.png';
+import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
 
 const Portfolio = () => {
@@ -147,29 +151,33 @@ const Portfolio = () => {
       title: "CudaFire",
       description: "GPU-accelerated wildfire spread simulator using CUDA and Rothermel fire behavior model. Processed 8.7 million terrain cells in parallel using 8-connected cellular automaton on RTX 3080, achieving 7,643× real-time simulation performance. Integrated GeoTIFF terrain ingestion via GDAL and real-time OpenGL 3D visualization pipeline.",
       tags: ["CUDA", "C++17", "CMake", "GDAL", "OpenGL", "GPU Computing"],
-      github: "#",
+      image: cudaFireImage,
+      github: "https://github.com/neiv06/CudaFire",
       demo: "#"
     },
     {
       title: "BruinMarket",
       description: "Full-stack UCLA-exclusive student marketplace with real-time peer-to-peer transactions and messaging. Architected backend using Go with PostgreSQL database, JWT authentication, and email verification. Deployed production app on Railway and Vercel with custom domain configuration and CI/CD pipeline.",
       tags: ["Go", "React", "PostgreSQL", "WebSockets", "Docker", "Railway", "Vercel"],
-      github: "#",
-      demo: "#"
+      image: bruinMarketImage,
+      github: "https://github.com/neiv06/BruinMarket",
+      demo: "https://www.instagram.com/p/DQ88soCFKnf/?img_index=1"
     },
     {
       title: "YUM",
       description: "UCLA mobile dining app providing live dining updates, commenting workflows, and personal profiles. Architected full-stack MERN mobile app with JWT-based authentication and real-time state synchronization. Implemented RESTful API endpoints with Express.js middleware and MongoDB aggregation pipelines.",
       tags: ["React Native", "Expo", "Node.js", "Express.js", "MongoDB Atlas", "REST APIs"],
-      github: "#",
-      demo: "#"
+      image: yumImage,
+      github: "https://github.com/angelayang9483/YUM",
+      demo: "https://docs.google.com/presentation/d/1qACK5aozxHnX-dhyt6w7rcdGo981hq4PslgyszBCE4U/edit?usp=sharing"
     },
     {
       title: "Stairmasters",
       description: "Swift iOS accessibility app helping UCLA students with disabilities find accessible campus routes. Leveraged Apple's MapKit framework with MKDirections API for accessible route calculations and navigation. Mapped elevator access points using Swift Core Location framework for wheelchair-accessible campus navigation.",
       tags: ["Swift", "iOS", "MapKit", "Core Location", "Accessibility"],
-      github: "#",
-      demo: "#"
+      image: stairmastersImage,
+      github: "https://github.com/AnthonyChui/NovaStairMasters",
+      demo: "https://www.figma.com/proto/y4lvQBRiMufqRgDByuwWlK/stairmasters?node-id=289-196&p=f&t=RlkCXJg1euAIK7EP-1&scaling=contain&content-scaling=fixed&page-id=289%3A195"
     }
   ];
   
@@ -253,17 +261,42 @@ const Portfolio = () => {
           const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 1080;
           const particleX = (p.x / 100) * viewportWidth;
           const particleY = (p.y / 100) * viewportHeight;
-          const distance = Math.sqrt(
-            Math.pow(mousePosition.x - particleX, 2) + 
-            Math.pow(mousePosition.y - particleY, 2)
-          );
           
-          // Interactive effect: stars glow brighter and larger near cursor
-          const maxDistance = 200; // Maximum distance for interaction
-          const interactionStrength = Math.max(0, 1 - distance / maxDistance);
-          const enhancedOpacity = Math.min(1, p.opacity + interactionStrength * 0.8);
-          const enhancedSize = p.size + interactionStrength * 3;
-          const enhancedGlow = enhancedSize * (2 + interactionStrength * 3);
+          // Calculate vector from particle to cursor (direction of pull)
+          const dx = mousePosition.x - particleX;
+          const dy = mousePosition.y - particleY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          // Black hole effect: pull stars towards cursor
+          const pullRadius = 300; // Maximum distance for black hole effect
+          const minDistance = 5; // Minimum distance to prevent division issues
+          
+          let pullStrength = 0;
+          let pullX = 0;
+          let pullY = 0;
+          
+          if (distance < pullRadius && distance > minDistance) {
+            // Calculate pull strength (stronger when closer to cursor)
+            // Using inverse square law for realistic gravitational effect
+            const normalizedDistance = (distance - minDistance) / (pullRadius - minDistance);
+            pullStrength = 1 - normalizedDistance;
+            // Apply cubic falloff for more dramatic effect near cursor
+            pullStrength = pullStrength * pullStrength * pullStrength;
+            
+            // Calculate direction towards cursor (normalized)
+            const angle = Math.atan2(dy, dx);
+            const pullDistance = pullStrength * 200; // Maximum pull distance
+            
+            pullX = Math.cos(angle) * pullDistance;
+            pullY = Math.sin(angle) * pullDistance;
+          }
+          
+          // Black hole visual effect: stars shrink and fade as they approach cursor
+          const interactionStrength = Math.max(0, 1 - distance / pullRadius);
+          // Stars get smaller and more transparent as they're sucked in
+          const blackHoleSize = p.size * (1 - interactionStrength * 0.8); // Shrink up to 80%
+          const blackHoleOpacity = p.opacity * (1 - interactionStrength * 0.9); // Fade up to 90%
+          const blackHoleGlow = blackHoleSize * (2 - interactionStrength * 1.5);
           
           const isPopped = poppedStars.has(p.id);
           
@@ -284,18 +317,18 @@ const Portfolio = () => {
             <div
               key={p.id}
               onClick={handleStarClick}
-              className="absolute rounded-full bg-white transition-all duration-300 cursor-pointer"
+              className="absolute rounded-full bg-white transition-all duration-200 cursor-pointer"
               style={{
                 left: `${p.x}%`,
                 top: `${p.y}%`,
-                width: `${enhancedSize}px`,
-                height: `${enhancedSize}px`,
-                opacity: enhancedOpacity,
-                boxShadow: `0 0 ${enhancedGlow}px rgba(255, 255, 255, ${enhancedOpacity})`,
+                width: `${Math.max(0.5, blackHoleSize)}px`,
+                height: `${Math.max(0.5, blackHoleSize)}px`,
+                opacity: Math.max(0.1, blackHoleOpacity),
+                boxShadow: `0 0 ${blackHoleGlow}px rgba(255, 255, 255, ${blackHoleOpacity})`,
                 animation: isPopped 
                   ? `starPop 0.6s ease-out forwards, twinkle ${p.twinkle}s ease-in-out infinite alternate` 
                   : `twinkle ${p.twinkle}s ease-in-out infinite alternate`,
-                transform: `translate(${interactionStrength * 5}px, ${interactionStrength * 5}px)`,
+                transform: `translate(${pullX}px, ${pullY}px)`,
                 pointerEvents: 'auto',
               }}
             />
@@ -303,12 +336,26 @@ const Portfolio = () => {
         })}
       </div>
       
-      {/* Cursor Glow Effect */}
+      {/* Black Hole Cursor Effect */}
       <div 
-        className="fixed w-96 h-96 rounded-full pointer-events-none blur-3xl opacity-5 bg-white transition-all duration-300"
+        className="fixed w-96 h-96 rounded-full pointer-events-none blur-3xl opacity-10 bg-black transition-all duration-300"
         style={{
           left: mousePosition.x - 192,
           top: mousePosition.y - 192,
+        }}
+      />
+      <div 
+        className="fixed w-64 h-64 rounded-full pointer-events-none blur-2xl opacity-20 bg-black transition-all duration-300"
+        style={{
+          left: mousePosition.x - 128,
+          top: mousePosition.y - 128,
+        }}
+      />
+      <div 
+        className="fixed w-32 h-32 rounded-full pointer-events-none blur-xl opacity-30 bg-black transition-all duration-300"
+        style={{
+          left: mousePosition.x - 64,
+          top: mousePosition.y - 64,
         }}
       />
       
@@ -356,7 +403,7 @@ const Portfolio = () => {
                 <a href="https://github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="https://www.linkedin.com/in/neiv-gupta" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
+                <a href="https://linkedin.com/in/neivgupta" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:neiv06@g.ucla.edu" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
@@ -493,9 +540,15 @@ const Portfolio = () => {
                 key={idx}
                 className="bg-transparent rounded-xl p-6 border border-gray-700 hover:border-white transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] group"
               >
-                <div className="flex justify-between items-start mb-4">
-                  <Code className="w-8 h-8 text-white" />
-                </div>
+                {project.image && (
+                  <div className="mb-4 rounded-lg overflow-hidden border border-gray-700">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                )}
                 
                 <h3 className="text-xl font-bold mb-3">{project.title}</h3>
                 <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.description}</p>
@@ -632,7 +685,7 @@ const Portfolio = () => {
       {/* Footer */}
       <footer className="border-t border-gray-800 py-8">
         <div className="max-w-6xl mx-auto px-6 text-center text-gray-400">
-          <p className="font-mono">© 2026 Neiv Gupta.</p>
+          <p className="font-mono">© 2026 Neiv Gupta</p>
         </div>
       </footer>
     </div>
