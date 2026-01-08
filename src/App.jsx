@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Terminal, Code, Briefcase, User, Award, Building2, MapPin, FileText } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
+import resume from './images/Neiv_Gupta_Resume.pdf';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
 import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
-
-const resume = '/Neiv_Gupta_Resume.pdf';
 
 const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
