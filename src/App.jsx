@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Terminal, Code, Briefcase, User, Award, Building2, MapPin, FileText } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
-import resume from './Neiv_Gupta_Resume (4).pdf';
+import resume from './images/Neiv_Gupta_Resume.pdf';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
 import yumImage from './images/YUM.png';
