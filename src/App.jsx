@@ -193,7 +193,7 @@ const Portfolio = () => {
     },
     { 
       category: "Developer Tools", 
-      items: ["Git", "Github", "Docker", "Railway", "Vercel", "REST APIs", "WebSockets", "MongoDB Atlas", "PostgreSQL", "OpenGL"] 
+      items: ["Git", "Github", "Docker", "Railway", "Vercel", "REST APIs", "WebSockets", "MongoDB Atlas", "PostgreSQL", "OpenGL", "CMake", "QGIS"] 
     },
     { 
       category: "Libraries", 
