@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Terminal, Code, Brie
 import profileImage from './images/headshot.JPG';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
-import resume from './Neiv_Gupta_Resume.pdf';
+import resume from './images/Neiv_Gupta_Resume.pdf';
 import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
