@@ -398,10 +398,10 @@ const Portfolio = () => {
               </p>
               
               <div className="flex justify-center space-x-4 mb-4 fade-in-up-delay-3">
-                <a href="https://github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
+                <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="https://linkedin.com/in/neivgupta" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
+                <a href="https://www.linkedin.com/in/neivgupta" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:neiv06@g.ucla.edu" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
