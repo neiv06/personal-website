@@ -389,8 +389,9 @@ const Portfolio = () => {
                 Neiv Gupta
               </h1>
               
-              <h2 className="text-2xl md:text-3xl text-white-300 mb-8 fade-in-up-delay-1">
-                Software Engineer <span className="font-bold mx-2 text-md">✦</span> Researcher <span className="font-bold mx-2 text-md">✦</span> UCLA Student
+              <h2 className="text-xl md:text-2xl text-white-300 mb-8 fade-in-up-delay-1">
+                
+                 <span className="font-bold mx-2 text-md">✦</span> Researcher <span className="font-bold mx-2 text-md">✦</span> UCLA Student
               </h2>
               
               <p className="text-base md:text-lg text-gray-300 mb-8 max-w-2xl mx-auto fade-in-up-delay-2">
