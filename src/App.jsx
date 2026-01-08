@@ -366,9 +366,6 @@ const Portfolio = () => {
       }`}>
         <div className="bg-gray-900/20 backdrop-blur-md rounded-full px-8 py-4 border border-gray-700/50 shadow-lg">
           <div className="flex items-center space-x-8">
-            <div className="flex items-center space-x-2">
-              <span className="text-lg font-bold">Neiv Gupta</span>
-            </div>
             <div className="flex space-x-8">
               {['home', 'about', 'experiences', 'projects', 'skills', 'contact'].map(section => (
                 <button
