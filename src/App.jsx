@@ -456,9 +456,9 @@ const Portfolio = () => {
             <br />
             <p className="text-white-300 leading-relaxed text-lg">
               Most recently, I worked as a Software Engineering Intern at ThinkScan Technologies, an AI startup where 
-              I developed low-power AI agents for computer vision tasks. My research experience includes deep learning and 
-              computer vision work at Argonne National Laboratory and AI for environmental monitoring research 
-              at Brown University.
+              I developed low-power AI agents for computer vision tasks. My research experience includes applying deep learning
+              and computer vision techniques to environmental monitoring at both the Argonne National Laboratory and the Northern Change Research
+              Laboratory at Brown University.
             </p>
             <br />
             <p className="text-white-300 leading-relaxed text-lg">
