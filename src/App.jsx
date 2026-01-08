@@ -151,7 +151,7 @@ const Portfolio = () => {
     {
       title: "CudaFire",
       description: "GPU-accelerated wildfire spread simulator using CUDA and Rothermel fire behavior model. Processed 8.7 million terrain cells in parallel using 8-connected cellular automaton on RTX 3080, achieving 7,643× real-time simulation performance. Integrated GeoTIFF terrain ingestion via GDAL and real-time OpenGL 3D visualization pipeline.",
-      tags: ["CUDA", "C++17", "CMake", "GDAL", "OpenGL", "GPU Computing"],
+      tags: ["CUDA", "C++17", "C","CMake", "GDAL", "OpenGL", "GPU Computing"],
       image: cudaFireImage,
       github: "https://github.com/neiv06/CudaFire",
       demo: "#"
