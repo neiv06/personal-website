@@ -401,7 +401,7 @@ const Portfolio = () => {
                 <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="https://www.linkedin.com/in/neiv-gupta-521522268/" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
+                <a href="https://www.linkedin.com/in/neiv-gupta/" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:neiv06@g.ucla.edu" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
@@ -658,7 +658,7 @@ const Portfolio = () => {
             </a>
             
             <a 
-              href="https://www.linkedin.com/in/neiv-gupta-521522268/"
+              href="https://www.linkedin.com/in/neiv-gupta/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
