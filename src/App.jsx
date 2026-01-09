@@ -658,7 +658,7 @@ const Portfolio = () => {
             </a>
             
             <a 
-              href="https://www.linkedin.com/in/neiv-gupta"
+              href="https://www.linkedin.com/in/neiv-gupta/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
