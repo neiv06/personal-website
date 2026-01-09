@@ -153,7 +153,7 @@ const Portfolio = () => {
       description: "GPU-accelerated wildfire spread simulator using CUDA and Rothermel fire behavior model. Processed 8.7 million terrain cells in parallel using 8-connected cellular automaton on RTX 3080, achieving 7,643× real-time simulation performance. Integrated GeoTIFF terrain ingestion via GDAL and real-time OpenGL 3D visualization pipeline.",
       tags: ["CUDA", "C++17", "C","CMake", "GDAL", "OpenGL", "GPU Computing"],
       image: cudaFireImage,
-      github: "https://github.com/neiv06/CudaFire",
+      github: "https://www.github.com/neiv06/CudaFire",
       demo: "#"
     },
     {
@@ -401,7 +401,7 @@ const Portfolio = () => {
                 <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="https://www.linkedin.com/in/neivgupta" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
+                <a href="https://www.linkedin.com/in/neiv-gupta-521522268/" target="_blank" rel="noopener noreferrer" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:neiv06@g.ucla.edu" className="p-3 bg-black text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all hover:scale-110">
@@ -658,7 +658,7 @@ const Portfolio = () => {
             </a>
             
             <a 
-              href="https://www.linkedin.com/in/neiv-gupta/"
+              href="https://www.linkedin.com/in/neiv-gupta-521522268/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
