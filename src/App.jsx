@@ -154,7 +154,7 @@ const Portfolio = () => {
       tags: ["CUDA", "C++17", "C","CMake", "GDAL", "OpenGL", "GPU Computing"],
       image: cudaFireImage,
       github: "https://www.github.com/neiv06/CudaFire",
-      demo: "#"
+      demo: "https://docs.google.com/presentation/d/1WCsvc8KwYqlWda7qSRX8m6OD9evagoQ5LCFSYURKPXo/edit?usp=sharing"
     },
     {
       title: "BruinMarket",
