@@ -113,7 +113,8 @@ const Portfolio = () => {
       description: [
         "Deployed TensorFlow/PyTorch CNN pipelines on SAGE edge nodes for real-time environmental monitoring",
         "Built high-performance CLIP-based zero-shot classification achieving 93% mAP across 12 environmental classes",
-        "Fine-tuned OpenCLIP ViT-B/32 models on domain-specific environmental datasets for improved accuracy"
+        "Fine-tuned OpenCLIP ViT-B/32 models on domain-specific environmental datasets for improved accuracy",
+        "Implemented model pruning and quantization techniques to reduce model size and improve inference speed"
       ],
       technologies: ["TensorFlow", "PyTorch", "CLIP", "OpenCLIP", "Edge Computing", "Computer Vision"]
     },
