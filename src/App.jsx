@@ -99,12 +99,11 @@ const Portfolio = () => {
       location: "Pleasanton, CA",
       period: "Apr. 2025 – Sep. 2025",
       description: [
-        "Developed AI Agent integrating YOLOv11 and OCR pipelines for object detection and scene reasoning",
-        "Improved inference accuracy by 34% with average latency reduced to 25 ms per frame on Apple M3 Silicon",
-        "Optimized TinyLlama to scale inference using MLX on Apple M3, reducing latency 22% and power 14%",
-        "Engineered image quality assessment using Laplacian variance and bilateral filtering for noise detection"
+        "Developed an object detection and scene reasoning AI Agent for defense applications and field deployments",
+        "Optimized LLM using RAG pipeline over FAISS vector store for semantic retrieval across defense imagery",
+        "Implemented Laplacian variance and bilateral filtering to preprocess noisy defense imagery for inference"
       ],
-      technologies: ["YOLOv11", "OCR", "MLX", "TinyLlama", "Computer Vision", "AI"]
+      technologies: ["RAG", "FAISS", "LLM", "Computer Vision", "AI", "Image Processing"]
     },
     {
       title: "Computer Vision Researcher",
@@ -112,9 +111,8 @@ const Portfolio = () => {
       location: "Lemont, IL",
       period: "June 2024 – Aug. 2024",
       description: [
-        "Deployed TensorFlow/PyTorch CNN models on ARM Cortex-A78 edge nodes for environmental monitoring",
+        "Deployed TensorFlow/PyTorch CNN pipelines on SAGE edge nodes for real-time environmental monitoring",
         "Built high-performance CLIP-based zero-shot classification achieving 93% mAP across 12 environmental classes",
-        "Implemented model optimization techniques including quantization, reducing edge deployment time",
         "Fine-tuned OpenCLIP ViT-B/32 models on domain-specific environmental datasets for improved accuracy"
       ],
       technologies: ["TensorFlow", "PyTorch", "CLIP", "OpenCLIP", "Edge Computing", "Computer Vision"]
@@ -193,7 +191,7 @@ const Portfolio = () => {
     },
     { 
       category: "Developer Tools", 
-      items: ["Git", "Github", "Docker", "Railway", "Vercel", "REST APIs", "WebSockets", "MongoDB Atlas", "PostgreSQL", "OpenGL", "CMake", "QGIS"] 
+      items: ["Git", "Github", "Docker", "Railway", "Vercel", "REST APIs", "WebSockets", "MongoDB Atlas", "PostgreSQL", "OpenGL", "CMake", "QGIS", "FAISS"] 
     },
     { 
       category: "Libraries", 
