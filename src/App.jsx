@@ -439,7 +439,7 @@ const Portfolio = () => {
               onClick={() => scrollToSection('about')}
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
-              <span>Continue to (About)</span>
+              <span>About</span>
               <ChevronDown className="w-5 h-5" />
             </button>
           </div>
@@ -494,7 +494,7 @@ const Portfolio = () => {
               onClick={() => scrollToSection('experiences')}
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
-              <span>Continue to (Experiences)</span>
+              <span>Experiences</span>
               <ChevronDown className="w-5 h-5" />
             </button>
           </div>
@@ -557,7 +557,7 @@ const Portfolio = () => {
               onClick={() => scrollToSection('projects')}
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
-              <span>Continue to (Projects)</span>
+              <span>Projects</span>
               <ChevronDown className="w-5 h-5" />
             </button>
           </div>
@@ -631,7 +631,7 @@ const Portfolio = () => {
               onClick={() => scrollToSection('skills')}
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
-              <span>Continue to (Skills)</span>
+              <span>Skills</span>
               <ChevronDown className="w-5 h-5" />
             </button>
           </div>
@@ -672,7 +672,7 @@ const Portfolio = () => {
               onClick={() => scrollToSection('contact')}
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
-              <span>Continue to (Contact)</span>
+              <span>Contact</span>
               <ChevronDown className="w-5 h-5" />
             </button>
           </div>
@@ -733,7 +733,7 @@ const Portfolio = () => {
               onClick={() => scrollToSection('home')}
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
-              <span>Continue to (Top)</span>
+              <span>Back to top</span>
               <ChevronDown className="w-5 h-5" />
             </button>
           </div>
