@@ -414,12 +414,23 @@ const Portfolio = () => {
               </div>
               
               <div className="flex justify-center">
-                <button 
-                  onClick={() => scrollToSection('about')}
-                  className="px-8 py-4 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 fade-in-up-delay-3"
-                >
-                  About Me
-                </button>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <a
+                    href={resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-4 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 fade-in-up-delay-3 inline-flex items-center justify-center space-x-2"
+                  >
+                    <FileText className="w-5 h-5" />
+                    <span>Resume</span>
+                  </a>
+                  <button 
+                    onClick={() => scrollToSection('about')}
+                    className="px-8 py-4 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 fade-in-up-delay-3"
+                  >
+                    About Me
+                  </button>
+                </div>
               </div>
           </div>
         </div>
@@ -664,16 +675,6 @@ const Portfolio = () => {
             >
               <Linkedin className="w-5 h-5" />
               <span>LinkedIn</span>
-            </a>
-            
-            <a 
-              href={resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <FileText className="w-5 h-5" />
-              <span>Resume</span>
             </a>
           </div>
         </div>
