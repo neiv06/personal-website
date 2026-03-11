@@ -734,7 +734,6 @@ const Portfolio = () => {
               className="px-6 py-3 bg-black text-white border-2 border-white hover:bg-white hover:text-black rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <span>Back to top</span>
-              <ChevronUp className="w-5 h-5" />
             </button>
           </div>
         </div>
