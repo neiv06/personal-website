@@ -471,7 +471,7 @@ const Portfolio = () => {
             </p>
             <br />
             <p className="text-white-300 leading-relaxed text-lg">
-              I'm also involved in the UCLA tech community through ACM-AI, Nova–Tech for Good, and Glitch UCLA. 
+              I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. 
               When I'm not coding, you can find me cooking, lifting weights, or playing for the UCLA Men's Ice Hockey team! 
               I'm always excited to collaborate on projects that push the boundaries of what's possible with technology.
             </p>
