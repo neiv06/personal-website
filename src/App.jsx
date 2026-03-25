@@ -126,7 +126,6 @@ const Portfolio = () => {
       description: [
         "Executed ResNet-50 transfer learning with TensorFlow/PyTorch, processing Sentinel-2 multi-spectral imagery",
         "Engineered data pipelines using GDAL/Rasterio, creating 15K+ labeled training samples via QGIS digitization",
-        "Achieved 14% accuracy improvement using U-Net segmentation architecture with focal loss optimization",
         "Quantified glacial ice loss contributing to sea level rise projections using geodetic mass balance calculations"
       ],
       technologies: ["TensorFlow", "PyTorch", "ResNet-50", "U-Net", "GDAL", "QGIS", "Remote Sensing"]
