@@ -5,7 +5,7 @@ import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
 import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
-import resume from '../Neiv_Gupta_Resume.pdf';
+import resume from 'public/Neiv_Gupta_Resume.pdf';
 import './App.css';
 
 const Portfolio = () => {
