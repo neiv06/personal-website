@@ -5,9 +5,8 @@ import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
 import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
+import resume from '../Neiv_Gupta_Resume.pdf';
 import './App.css';
-
-const resume = '/Neiv_Gupta_Resume (9).pdf';
 
 const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
