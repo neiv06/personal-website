@@ -99,7 +99,7 @@ const Portfolio = () => {
       location: "Pleasanton, CA",
       period: "Apr. 2025 – Sep. 2025",
       description: [
-        "Developed an object detection and scene reasoning AI Agent for threat detection in field deployments",
+        "Developed an object detection and scene reasoning AI Agent for threat detection in defense field deployments",
         "Optimized LLM using RAG pipeline over FAISS vector store for semantic retrieval across imagery datasets",
         "Implemented Laplacian variance and bilateral filtering to enhance noisy field imagery for inference"
       ],
