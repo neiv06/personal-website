@@ -160,7 +160,7 @@ const Portfolio = () => {
       tags: ["Go", "React", "PostgreSQL", "WebSockets", "Docker", "Railway", "Vercel"],
       image: bruinMarketImage,
       github: "https://github.com/neiv06/BruinMarket",
-      demo: "https://www.instagram.com/p/DQ88soCFKnf/?img_index=1"
+      demo: "https://www.figma.com/proto/y54NXFdnuFkzPJTdHdHDyb/BruinMarket-Slide-Demo?node-id=27-2&p=f&t=QkAnH0jYKLx1KVzg-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1"
     },
     {
       title: "YUM",
