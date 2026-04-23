@@ -7,7 +7,7 @@ import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
 
-const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
+const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume_1.pdf`;
 
 const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -126,7 +126,7 @@ const Portfolio = () => {
       description: [
         "Executed ResNet-50 transfer learning with TensorFlow/PyTorch, processing Sentinel-2 multi-spectral imagery",
         "Engineered data pipelines using GDAL/Rasterio, creating 15K+ labeled training samples via QGIS digitization",
-        "Quantified glacial ice loss contributing to sea level rise projections using geodetic mass balance calculations"
+        "Contributed to glacial ice loss and sea level rise projections achieved via geodetic mass balance calculations."
       ],
       technologies: ["TensorFlow", "PyTorch", "ResNet-50", "U-Net", "GDAL", "QGIS", "Remote Sensing"]
     },
