@@ -11,7 +11,7 @@ const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
 
 const sections = ['home', 'about', 'experiences', 'projects', 'skills', 'contact'];
 
-const Reveal = ({ children, className = '', delay = 0 }) => {
+const Reveal = ({ children, className = '', delay = 0, asHeading = false }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
   return (
     <div
       ref={ref}
-      className={`reveal ${className}`}
+      className={`${asHeading ? 'reveal-heading' : 'reveal'} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -252,10 +252,12 @@ const Portfolio = () => {
       {/* About Section */}
       <section id="about" className="min-h-screen flex items-center py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
-          <h2 className="text-4xl font-bold mb-12 flex items-center">
-            <User className="w-10 h-10 mr-4 text-[#FFF2D7]" />
-            About Me
-          </h2>
+          <Reveal asHeading>
+            <h2 className="text-4xl font-bold mb-12 flex items-center">
+              <User className="w-10 h-10 mr-4 text-[#FFF2D7]" />
+              About Me
+            </h2>
+          </Reveal>
           
           <div className="flex flex-col md:flex-row items-start gap-8">
             <Reveal className="flex-shrink-0">
@@ -263,7 +265,7 @@ const Portfolio = () => {
                 <img 
                   src={profileImage} 
                   alt="Neiv Gupta" 
-                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-none object-cover border border-[#FFF2D7]/15 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#FFF2D7]/40 transition-all duration-500"
+                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-[#FFF2D7]/15 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#FFF2D7]/40 transition-all duration-500"
                 />
               </div>
             </Reveal>
@@ -296,10 +298,12 @@ const Portfolio = () => {
       {/* Experiences Section */}
       <section id="experiences" className="min-h-screen py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
-          <h2 className="text-4xl font-bold mb-12 flex items-center">
-            <Building2 className="w-10 h-10 mr-4 text-[#FFF2D7]" />
-            Professional Experience
-          </h2>
+          <Reveal asHeading>
+            <h2 className="text-4xl font-bold mb-12 flex items-center">
+              <Building2 className="w-10 h-10 mr-4 text-[#FFF2D7]" />
+              Professional Experience
+            </h2>
+          </Reveal>
           
           <div className="space-y-6">
             {experiences.map((exp, idx) => (
@@ -343,17 +347,19 @@ const Portfolio = () => {
       {/* Projects Section */}
       <section id="projects" className="min-h-screen py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
-          <h2 className="text-4xl font-bold mb-12 flex items-center">
-            <Briefcase className="w-10 h-10 mr-4 text-[#FFF2D7]" />
-            Featured Projects
-          </h2>
+          <Reveal asHeading>
+            <h2 className="text-4xl font-bold mb-12 flex items-center">
+              <Briefcase className="w-10 h-10 mr-4 text-[#FFF2D7]" />
+              Featured Projects
+            </h2>
+          </Reveal>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, idx) => (
               <Reveal key={idx} delay={idx * 100}>
                 <div className="panel p-5 h-full flex flex-col group">
                   {project.image && (
-                    <div className="mb-5 overflow-hidden rounded-none border border-[#FFF2D7]/10">
+                    <div className="mb-5 overflow-hidden rounded-[4px] border border-[#FFF2D7]/10">
                       <img 
                         src={project.image} 
                         alt={project.title}
@@ -401,10 +407,12 @@ const Portfolio = () => {
       {/* Skills Section */}
       <section id="skills" className="min-h-screen py-20 relative">
         <div className="max-w-4xl mx-auto px-6 z-10">
-          <h2 className="text-4xl font-bold mb-12 flex items-center">
-            <Award className="w-10 h-10 mr-4 text-[#FFF2D7]" />
-            Technical Skills
-          </h2>
+          <Reveal asHeading>
+            <h2 className="text-4xl font-bold mb-12 flex items-center">
+              <Award className="w-10 h-10 mr-4 text-[#FFF2D7]" />
+              Technical Skills
+            </h2>
+          </Reveal>
           
           <div className="grid md:grid-cols-2 gap-5">
             {skills.map((skillSet, idx) => (
@@ -433,7 +441,7 @@ const Portfolio = () => {
             </p>
             
             <div className="mb-10">
-              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#FFF2D7]/20 rounded-none text-[#FFF2D7]/80">
+              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#FFF2D7]/20 rounded-[4px] text-[#FFF2D7]/80">
                 <MapPin className="w-5 h-5" />
                 <span>Los Angeles, CA</span>
               </span>
