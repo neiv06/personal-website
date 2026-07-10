@@ -1,49 +1,21 @@
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(36px) scale(0.94);
-    filter: blur(10px);
-    letter-spacing: 0.08em;
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-    letter-spacing: normal;
-  }
-}
-
-@keyframes heroIconsIn {
-  from {
-    opacity: 0;
-    transform: translateY(24px) scale(0.85);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-@keyframes chipPop {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
 .fade-in-up {
-  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.8s ease-out forwards;
   opacity: 0;
 }
 
 .fade-in-up-delay-3 {
-  animation: heroIconsIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  animation: fadeInUp 0.8s ease-out 0.35s forwards;
   opacity: 0;
 }
 
@@ -93,55 +65,20 @@
     );
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(56px) scale(0.94);
-  filter: blur(12px);
-  transition:
-    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
-}
-
-.reveal.is-visible .chip {
-  animation: chipPop 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.reveal.is-visible .chip:nth-child(1) { animation-delay: 0.05s; }
-.reveal.is-visible .chip:nth-child(2) { animation-delay: 0.09s; }
-.reveal.is-visible .chip:nth-child(3) { animation-delay: 0.13s; }
-.reveal.is-visible .chip:nth-child(4) { animation-delay: 0.17s; }
-.reveal.is-visible .chip:nth-child(5) { animation-delay: 0.21s; }
-.reveal.is-visible .chip:nth-child(6) { animation-delay: 0.25s; }
-.reveal.is-visible .chip:nth-child(7) { animation-delay: 0.29s; }
-.reveal.is-visible .chip:nth-child(8) { animation-delay: 0.33s; }
-.reveal.is-visible .chip:nth-child(n+9) { animation-delay: 0.37s; }
-
+.reveal,
 .reveal-heading {
   opacity: 0;
-  transform: translateX(-28px) skewX(-4deg);
-  filter: blur(8px);
+  transform: translateY(20px);
   transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    letter-spacing 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  letter-spacing: 0.08em;
-  will-change: opacity, transform, filter;
+    opacity 0.55s ease,
+    transform 0.55s ease;
+  will-change: opacity, transform;
 }
 
+.reveal.is-visible,
 .reveal-heading.is-visible {
   opacity: 1;
-  transform: translateX(0) skewX(0);
-  filter: blur(0);
-  letter-spacing: normal;
+  transform: translateY(0);
 }
 
 .panel {
@@ -151,7 +88,6 @@
   transition:
     border-color 0.35s ease,
     background-color 0.35s ease,
-    transform 0.35s ease,
     box-shadow 0.35s ease;
 }
 
