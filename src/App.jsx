@@ -43,7 +43,8 @@ const Reveal = ({ children, className = '', delay = 0, asHeading = false }) => {
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [homeProgress, setHomeProgress] = useState(0);
-  const [showScrollHint, setShowScrollHint] = useState(false);
+  const [showScrollHint, setShowScrollHint] = useState(true);
+  const [showTimeline, setShowTimeline] = useState(false);
   const homeProgressRef = useRef(0);
   const idleTimerRef = useRef(null);
   const homeUnlocked = homeProgress >= 1;
@@ -52,6 +53,15 @@ const Portfolio = () => {
     const clamped = Math.min(1, Math.max(0, next));
     homeProgressRef.current = clamped;
     setHomeProgress(clamped);
+
+    if (clamped > 0.02) {
+      setShowTimeline(true);
+      setShowScrollHint(false);
+    } else {
+      setShowTimeline(false);
+      setShowScrollHint(true);
+      clearTimeout(idleTimerRef.current);
+    }
   };
 
   useEffect(() => {
@@ -152,18 +162,24 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
-    const resetIdle = () => {
+    const onActivity = () => {
+      // Permanent on untouched home; idle elsewhere
+      if (homeProgressRef.current <= 0.02) {
+        setShowScrollHint(true);
+        clearTimeout(idleTimerRef.current);
+        return;
+      }
+
       setShowScrollHint(false);
       clearTimeout(idleTimerRef.current);
       idleTimerRef.current = setTimeout(() => setShowScrollHint(true), 2200);
     };
 
     const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'wheel', 'scroll'];
-    events.forEach((event) => window.addEventListener(event, resetIdle, { passive: true }));
-    resetIdle();
+    events.forEach((event) => window.addEventListener(event, onActivity, { passive: true }));
 
     return () => {
-      events.forEach((event) => window.removeEventListener(event, resetIdle));
+      events.forEach((event) => window.removeEventListener(event, onActivity));
       clearTimeout(idleTimerRef.current);
     };
   }, []);
@@ -313,7 +329,12 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-[#1f1e1d] text-[#FFF2D7] overflow-x-hidden page-noise">
       {/* Scroll timeline */}
-      <aside className="fixed right-6 top-1/2 z-40 hidden md:flex sidebar-enter" aria-label="Page sections">
+      <aside
+        className={`fixed right-6 top-1/2 z-40 hidden md:flex sidebar-panel ${
+          showTimeline ? 'is-visible' : ''
+        }`}
+        aria-label="Page sections"
+      >
         <div className="relative flex flex-col justify-between h-64 py-1">
           <div className="absolute right-0 top-0 bottom-0 w-px bg-[#C4A484]/25" aria-hidden="true" />
           <div
