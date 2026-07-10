@@ -9,48 +9,28 @@ import './App.css';
 
 const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
 
-const Portfolio = () => {
-  const [terminalText, setTerminalText] = useState('');
-  const [isScrollingDown, setIsScrollingDown] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+const sections = ['home', 'about', 'experiences', 'projects', 'skills', 'contact'];
 
-  const fullText = "neivgupta:~$ whoami";
-  
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setTerminalText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
-    
-    return () => clearInterval(timer);
-  }, []);
+const Portfolio = () => {
+  const [activeSection, setActiveSection] = useState('home');
   
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY < 10) {
-        // At the top, always show
-        setIsScrollingDown(false);
-      } else if (currentScrollY > lastScrollY) {
-        // Scrolling down
-        setIsScrollingDown(true);
-      } else {
-        // Scrolling up
-        setIsScrollingDown(false);
+      const viewportMid = window.scrollY + window.innerHeight / 3;
+      let current = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= viewportMid) {
+          current = id;
+        }
       }
-      
-      setLastScrollY(currentScrollY);
+      setActiveSection(current);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
   
   const experiences = [
     {
@@ -163,29 +143,43 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-[#343231] text-[#FFF2D7] overflow-x-hidden">
-      {/* Navigation */}
-      <nav className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-        isScrollingDown ? '-translate-y-20 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
-      }`}>
-        <div className="bg-[#343231]/60 backdrop-blur-md rounded-full px-8 py-4 border border-[#FFF2D7]/20 shadow-lg">
-          <div className="flex items-center space-x-8">
-            <div className="flex space-x-8">
-              {['home', 'about', 'experiences', 'projects', 'skills', 'contact'].map(section => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className="hover:text-[#FFF2D7] transition-all duration-300 capitalize font-medium hover:scale-110 transform"
+      {/* Scroll timeline */}
+      <aside className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end gap-0" aria-label="Page sections">
+        <div className="relative flex flex-col items-end">
+          <div className="absolute right-[5px] top-2 bottom-2 w-px bg-[#FFF2D7]/20" aria-hidden="true" />
+          {sections.map((section) => {
+            const isActive = activeSection === section;
+            return (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className="group relative flex items-center gap-3 py-3 pr-0 focus:outline-none"
+                aria-current={isActive ? 'true' : undefined}
+              >
+                <span
+                  className={`text-xs font-medium tracking-wide capitalize transition-all duration-300 ${
+                    isActive
+                      ? 'opacity-100 text-[#FFF2D7] translate-x-0'
+                      : 'opacity-0 -translate-x-1 text-[#FFF2D7]/60 group-hover:opacity-100 group-hover:translate-x-0'
+                  }`}
                 >
                   {section}
-                </button>
-              ))}
-            </div>
-          </div>
+                </span>
+                <span
+                  className={`relative z-10 block rounded-full border transition-all duration-300 ${
+                    isActive
+                      ? 'h-3 w-3 border-[#FFF2D7] bg-[#FFF2D7] shadow-[0_0_12px_rgba(255,242,215,0.5)]'
+                      : 'h-2.5 w-2.5 border-[#FFF2D7]/40 bg-[#343231] group-hover:border-[#FFF2D7] group-hover:scale-110'
+                  }`}
+                />
+              </button>
+            );
+          })}
         </div>
-      </nav>
+      </aside>
       
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative pt-20">
+      <section id="home" className="min-h-screen flex items-center justify-center relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <div className="text-center">
               <h1 className="text-7xl md:text-9xl font-bold mb-4 text-[#FFF2D7] fade-in-up transition-all duration-300 cursor-pointer name-glow">
@@ -202,11 +196,6 @@ const Portfolio = () => {
                 <a href="mailto:neiv06@g.ucla.edu" className="p-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#343231] transition-all hover:scale-110">
                   <Mail className="w-6 h-6" />
                 </a>
-              </div>
-              
-              <div className="flex items-center justify-center space-x-2 text-[#FFF2D7]/75 mb-12 fade-in-up-delay-3">
-                <MapPin className="w-5 h-5" />
-                <span>Los Angeles, CA</span>
               </div>
               
               <div className="flex justify-center">
