@@ -439,7 +439,7 @@ const Portfolio = () => {
                 <img 
                   src={profileImage} 
                   alt="Neiv Gupta" 
-                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-[#C4A484]/25 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#C4A484]/60 transition-all duration-500"
+                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-transparent shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#C4A484]/50 transition-all duration-500"
                 />
               </div>
             </Reveal>
@@ -505,7 +505,7 @@ const Portfolio = () => {
                     ))}
                   </ul>
                   
-                  <div className="flex flex-wrap gap-2 pt-5 border-t border-[#C4A484]/15">
+                  <div className="flex flex-wrap gap-2 pt-5">
                     {exp.technologies.map((tech, i) => (
                       <span key={i} className="chip">{tech}</span>
                     ))}
@@ -531,7 +531,7 @@ const Portfolio = () => {
               <Reveal key={idx} delay={idx * 100}>
                 <div className="panel p-5 h-full flex flex-col group">
                   {project.image && (
-                    <div className="mb-5 overflow-hidden rounded-[4px] border border-[#C4A484]/15">
+                    <div className="mb-5 overflow-hidden rounded-[4px] border border-transparent group-hover:border-[#C4A484]/30 transition-colors duration-300">
                       <img 
                         src={project.image} 
                         alt={project.title}
