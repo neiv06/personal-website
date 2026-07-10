@@ -1,13 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  font-family: "Roboto Serif", serif;
+  --cream: #fff2d7;
+  --coffee: #c4a484;
+  --coffee-soft: rgba(196, 164, 132, 0.35);
+  --ink: #1f1e1d;
+  --font-display: "Roboto Serif", serif;
+  --font-ui: "Outfit", sans-serif;
+
+  font-family: var(--font-ui);
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: dark;
-  color: #FFF2D7;
-  background-color: #1f1e1d;
+  color: var(--cream);
+  background-color: var(--ink);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,7 +26,15 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  font-family: "Roboto Serif", serif;
-  background-color: #1f1e1d;
-  color: #FFF2D7;
+  font-family: var(--font-ui);
+  background-color: var(--ink);
+  color: var(--cream);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+}
+
+.font-display {
+  font-family: var(--font-display);
 }

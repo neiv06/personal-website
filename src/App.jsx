@@ -171,16 +171,16 @@ const Portfolio = () => {
   };
 
   const iconBtn =
-    "p-3 text-[#FFF2D7] border border-[#FFF2D7]/30 rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] hover:border-[#FFF2D7] transition-all duration-300 hover:scale-105";
+    "p-3 text-[#FFF2D7] border border-[#C4A484]/45 rounded-full hover:bg-[#C4A484] hover:text-[#1f1e1d] hover:border-[#C4A484] transition-all duration-300 hover:scale-105";
 
   return (
     <div className="min-h-screen bg-[#1f1e1d] text-[#FFF2D7] overflow-x-hidden page-noise">
       {/* Scroll timeline */}
       <aside className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex" aria-label="Page sections">
         <div className="relative flex flex-col justify-between h-64 py-1">
-          <div className="absolute right-0 top-0 bottom-0 w-px bg-[#FFF2D7]/20" aria-hidden="true" />
+          <div className="absolute right-0 top-0 bottom-0 w-px bg-[#C4A484]/25" aria-hidden="true" />
           <div
-            className="absolute right-0 top-0 w-px bg-[#FFF2D7] transition-all duration-500 ease-out"
+            className="absolute right-0 top-0 w-px bg-[#C4A484] transition-all duration-500 ease-out"
             style={{ height: `${(sections.indexOf(activeSection) / (sections.length - 1)) * 100}%` }}
             aria-hidden="true"
           />
@@ -196,8 +196,8 @@ const Portfolio = () => {
                 <span
                   className={`text-xs font-medium tracking-wide capitalize transition-all duration-300 ${
                     isActive
-                      ? 'opacity-100 text-[#FFF2D7]'
-                      : 'opacity-40 text-[#FFF2D7] group-hover:opacity-100'
+                      ? 'opacity-100 text-[#C4A484]'
+                      : 'opacity-40 text-[#FFF2D7] group-hover:opacity-100 group-hover:text-[#C4A484]'
                   }`}
                 >
                   {section}
@@ -241,7 +241,7 @@ const Portfolio = () => {
 
         <button
           onClick={() => scrollToSection('about')}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#FFF2D7]/45 hover:text-[#FFF2D7] transition-colors"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#C4A484]/70 hover:text-[#C4A484] transition-colors"
           aria-label="Scroll to about"
         >
           <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
@@ -254,7 +254,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-12 flex items-center">
-              <User className="w-10 h-10 mr-4 text-[#FFF2D7]" />
+              <User className="w-10 h-10 mr-4 accent-icon" />
               About Me
             </h2>
           </Reveal>
@@ -265,26 +265,26 @@ const Portfolio = () => {
                 <img 
                   src={profileImage} 
                   alt="Neiv Gupta" 
-                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-[#FFF2D7]/15 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#FFF2D7]/40 transition-all duration-500"
+                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-[#C4A484]/25 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#C4A484]/60 transition-all duration-500"
                 />
               </div>
             </Reveal>
             
             <Reveal className="flex-1" delay={120}>
               <div className="panel p-8">
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg font-display">
                   I am a second-year computer science student at UCLA, passionate about building practical applications 
                   that solve real-world problems.
                 </p>
                 <br />
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg font-display">
                   Most recently, I worked as a Software Engineering Intern at ThinkScan Technologies, an AI startup where 
                   I developed low-power AI agents for computer vision tasks. My research experience includes applying deep learning
                   and computer vision techniques to environmental monitoring with the Argonne National Laboratory and the Northern Change Research
                   Laboratory at Brown University.
                 </p>
                 <br />
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg font-display">
                   I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. 
                   When I'm not coding, you can find me cooking, running, and weightlifting. 
                   I'm always excited to collaborate on projects that create meaningful impact.
@@ -300,7 +300,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-12 flex items-center">
-              <Building2 className="w-10 h-10 mr-4 text-[#FFF2D7]" />
+              <Building2 className="w-10 h-10 mr-4 accent-icon" />
               Professional Experience
             </h2>
           </Reveal>
@@ -313,12 +313,12 @@ const Portfolio = () => {
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold text-[#FFF2D7] mb-2">{exp.title}</h3>
                       <div className="flex flex-col md:flex-row md:items-center md:space-x-3 text-[#FFF2D7]/70">
-                        <span className="font-semibold text-[#FFF2D7]/90">{exp.company}</span>
-                        <span className="hidden md:inline text-[#FFF2D7]/30">/</span>
+                        <span className="font-semibold accent-text">{exp.company}</span>
+                        <span className="hidden md:inline text-[#C4A484]/40">/</span>
                         <span>{exp.location}</span>
                       </div>
                     </div>
-                    <div className="text-[#FFF2D7]/45 font-mono text-sm tracking-wide">
+                    <div className="text-[#C4A484]/80 text-sm tracking-wide">
                       {exp.period}
                     </div>
                   </div>
@@ -326,13 +326,13 @@ const Portfolio = () => {
                   <ul className="space-y-2.5 mb-6">
                     {exp.description.map((item, i) => (
                       <li key={i} className="text-[#FFF2D7]/70 flex items-start">
-                        <span className="text-[#FFF2D7]/40 mr-3 mt-1.5 text-[0.5rem]">●</span>
+                        <span className="accent-dot mr-3 mt-1.5 text-[0.5rem]">●</span>
                         <span className="leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
                   
-                  <div className="flex flex-wrap gap-2 pt-5 border-t border-[#FFF2D7]/10">
+                  <div className="flex flex-wrap gap-2 pt-5 border-t border-[#C4A484]/15">
                     {exp.technologies.map((tech, i) => (
                       <span key={i} className="chip">{tech}</span>
                     ))}
@@ -349,7 +349,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-12 flex items-center">
-              <Briefcase className="w-10 h-10 mr-4 text-[#FFF2D7]" />
+              <Briefcase className="w-10 h-10 mr-4 accent-icon" />
               Featured Projects
             </h2>
           </Reveal>
@@ -359,7 +359,7 @@ const Portfolio = () => {
               <Reveal key={idx} delay={idx * 100}>
                 <div className="panel p-5 h-full flex flex-col group">
                   {project.image && (
-                    <div className="mb-5 overflow-hidden rounded-[4px] border border-[#FFF2D7]/10">
+                    <div className="mb-5 overflow-hidden rounded-[4px] border border-[#C4A484]/15">
                       <img 
                         src={project.image} 
                         alt={project.title}
@@ -409,7 +409,7 @@ const Portfolio = () => {
         <div className="max-w-4xl mx-auto px-6 z-10">
           <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-12 flex items-center">
-              <Award className="w-10 h-10 mr-4 text-[#FFF2D7]" />
+              <Award className="w-10 h-10 mr-4 accent-icon" />
               Technical Skills
             </h2>
           </Reveal>
@@ -418,7 +418,9 @@ const Portfolio = () => {
             {skills.map((skillSet, idx) => (
               <Reveal key={idx} delay={idx * 90}>
                 <div className="panel p-6 h-full">
-                  <h3 className="text-lg font-bold mb-4 text-[#FFF2D7] tracking-wide">{skillSet.category}</h3>
+                  <h3 className="text-lg font-bold mb-4 tracking-wide">
+                    <span className="accent-text">{skillSet.category}</span>
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {skillSet.items.map((skill, i) => (
                       <span key={i} className="chip">{skill}</span>
@@ -436,12 +438,12 @@ const Portfolio = () => {
         <div className="max-w-2xl mx-auto px-6 text-center z-10">
           <Reveal>
             <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
-            <p className="text-xl text-[#FFF2D7]/65 mb-10">
+            <p className="text-xl text-[#FFF2D7]/65 mb-10 font-display">
               I'm always open to discussing new projects, opportunities, or collaborations.
             </p>
             
             <div className="mb-10">
-              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#FFF2D7]/20 rounded-[4px] text-[#FFF2D7]/80">
+              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#C4A484]/30 rounded-[4px] text-[#C4A484]">
                 <MapPin className="w-5 h-5" />
                 <span>Los Angeles, CA</span>
               </span>
@@ -478,9 +480,9 @@ const Portfolio = () => {
       </section>
       
       {/* Footer */}
-      <footer className="border-t border-[#FFF2D7]/10 py-8">
-        <div className="max-w-6xl mx-auto px-6 text-center text-[#FFF2D7]/45">
-          <p className="font-mono text-sm">© 2026 Neiv Gupta</p>
+      <footer className="border-t border-[#C4A484]/15 py-8">
+        <div className="max-w-6xl mx-auto px-6 text-center text-[#C4A484]/60">
+          <p className="text-sm tracking-wide">© 2026 Neiv Gupta</p>
         </div>
       </footer>
     </div>
