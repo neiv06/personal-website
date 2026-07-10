@@ -42,110 +42,23 @@ const Reveal = ({ children, className = '', delay = 0, asHeading = false }) => {
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
-  const [homeProgress, setHomeProgress] = useState(0);
   const [showScrollHint, setShowScrollHint] = useState(true);
   const [showTimeline, setShowTimeline] = useState(false);
-  const homeProgressRef = useRef(0);
   const idleTimerRef = useRef(null);
-  const homeUnlocked = homeProgress >= 1;
-
-  const setProgress = (next) => {
-    const clamped = Math.min(1, Math.max(0, next));
-    homeProgressRef.current = clamped;
-    setHomeProgress(clamped);
-
-    if (clamped > 0.02) {
-      setShowTimeline(true);
-      setShowScrollHint(false);
-    } else {
-      setShowTimeline(false);
-      setShowScrollHint(true);
-      clearTimeout(idleTimerRef.current);
-    }
-  };
-
-  useEffect(() => {
-    document.body.style.overflow = homeUnlocked ? '' : 'hidden';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [homeUnlocked]);
-
-  useEffect(() => {
-    const onWheel = (e) => {
-      const current = homeProgressRef.current;
-
-      if (current < 1) {
-        e.preventDefault();
-        setProgress(current + e.deltaY * 0.00115);
-        return;
-      }
-
-      if (window.scrollY <= 0 && e.deltaY < 0) {
-        e.preventDefault();
-        setProgress(1 + e.deltaY * 0.00115);
-      }
-    };
-
-    let touchY = null;
-    const onTouchStart = (e) => {
-      touchY = e.touches[0].clientY;
-    };
-    const onTouchMove = (e) => {
-      if (touchY == null) return;
-      const dy = touchY - e.touches[0].clientY;
-      const current = homeProgressRef.current;
-
-      if (current < 1) {
-        e.preventDefault();
-        setProgress(current + dy * 0.0035);
-        touchY = e.touches[0].clientY;
-        return;
-      }
-
-      if (window.scrollY <= 0 && dy < 0) {
-        e.preventDefault();
-        setProgress(current + dy * 0.0035);
-        touchY = e.touches[0].clientY;
-      }
-    };
-
-    window.addEventListener('wheel', onWheel, { passive: false });
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: false });
-
-    const onKeyDown = (e) => {
-      if (homeProgressRef.current >= 1 && !(window.scrollY <= 0 && (e.key === 'ArrowUp' || e.key === 'PageUp'))) {
-        return;
-      }
-
-      if (['ArrowDown', 'PageDown', ' ', 'Spacebar'].includes(e.key)) {
-        if (homeProgressRef.current < 1) {
-          e.preventDefault();
-          setProgress(homeProgressRef.current + 0.12);
-        }
-      }
-
-      if (['ArrowUp', 'PageUp'].includes(e.key)) {
-        if (homeProgressRef.current < 1 || window.scrollY <= 0) {
-          e.preventDefault();
-          setProgress(homeProgressRef.current - 0.12);
-        }
-      }
-    };
-    window.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      window.removeEventListener('wheel', onWheel);
-      window.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const viewportMid = window.scrollY + window.innerHeight / 3;
+      const y = window.scrollY;
+      setShowTimeline(y > 40);
+
+      if (y <= 40) {
+        setShowScrollHint(true);
+        clearTimeout(idleTimerRef.current);
+      } else {
+        setShowScrollHint(false);
+      }
+
+      const viewportMid = y + window.innerHeight / 3;
       let current = sections[0];
       for (const id of sections) {
         const el = document.getElementById(id);
@@ -163,8 +76,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     const onActivity = () => {
-      // Permanent on untouched home; idle elsewhere
-      if (homeProgressRef.current <= 0.02) {
+      if (window.scrollY <= 40) {
         setShowScrollHint(true);
         clearTimeout(idleTimerRef.current);
         return;
@@ -290,28 +202,10 @@ const Portfolio = () => {
   ];
   
   const scrollToSection = (id) => {
-    if (id !== 'home' && homeProgressRef.current < 1) {
-      setProgress(1);
-      requestAnimationFrame(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-      });
-      return;
-    }
-
-    if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const goNext = () => {
-    if (homeProgressRef.current < 1) {
-      setProgress(Math.min(1, homeProgressRef.current + 0.35));
-      return;
-    }
-
     const idx = sections.indexOf(activeSection);
     if (idx < sections.length - 1) {
       scrollToSection(sections[idx + 1]);
@@ -319,9 +213,6 @@ const Portfolio = () => {
       scrollToSection('home');
     }
   };
-
-  const nameOpacity = Math.min(1, homeProgress / 0.45);
-  const iconsOpacity = Math.min(1, Math.max(0, (homeProgress - 0.4) / 0.45));
 
   const iconBtn =
     "p-3 text-[#FFF2D7] border border-[#C4A484]/45 rounded-full hover:bg-[#C4A484] hover:text-[#1f1e1d] hover:border-[#C4A484] transition-all duration-300 hover:scale-105";
@@ -370,24 +261,11 @@ const Portfolio = () => {
       <section id="home" className="min-h-screen flex items-center justify-center relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <div className="text-center">
-              <h1
-                className="home-stage text-7xl md:text-9xl font-bold mb-4 text-[#FFF2D7] transition-all duration-300 cursor-pointer name-glow"
-                style={{
-                  opacity: nameOpacity,
-                  transform: `translateY(${(1 - nameOpacity) * 28}px)`,
-                }}
-              >
+              <h1 className="fade-in-up text-7xl md:text-9xl font-bold mb-4 text-[#FFF2D7] transition-all duration-300 cursor-pointer name-glow">
                 Neiv Gupta
               </h1>
               
-              <div
-                className="home-stage flex justify-center space-x-4"
-                style={{
-                  opacity: iconsOpacity,
-                  transform: `translateY(${(1 - iconsOpacity) * 18}px)`,
-                  pointerEvents: iconsOpacity > 0.2 ? 'auto' : 'none',
-                }}
-              >
+              <div className="fade-in-up-delay-3 flex justify-center space-x-4">
                 <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className={iconBtn}>
                   <Github className="w-6 h-6" />
                 </a>
@@ -416,7 +294,7 @@ const Portfolio = () => {
         className={`scroll-hint font-ui fixed bottom-10 left-1/2 z-50 flex flex-col items-center gap-2 text-[#C4A484]/80 hover:text-[#C4A484] transition-colors ${
           showScrollHint ? 'is-visible' : ''
         }`}
-        aria-label={homeUnlocked ? 'Scroll to next section' : 'Reveal home'}
+        aria-label="Scroll to next section"
       >
         <span className="text-xs tracking-[0.2em] uppercase">
           {activeSection === 'contact' ? 'Top' : 'Scroll'}
