@@ -14,16 +14,6 @@
   opacity: 0;
 }
 
-.fade-in-up-delay-1 {
-  animation: fadeInUp 0.8s ease-out 0.2s forwards;
-  opacity: 0;
-}
-
-.fade-in-up-delay-2 {
-  animation: fadeInUp 0.8s ease-out 0.4s forwards;
-  opacity: 0;
-}
-
 .fade-in-up-delay-3 {
   animation: fadeInUp 0.8s ease-out 0.6s forwards;
   opacity: 0;
@@ -55,17 +45,70 @@
   background-size: 180px 180px;
 }
 
-@keyframes scrollBounce {
-  0%, 100% {
-    transform: translate(-50%, 0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translate(-50%, 8px);
-    opacity: 1;
-  }
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
-.scroll-indicator {
-  animation: scrollBounce 2s ease-in-out infinite;
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.panel {
+  background: rgba(255, 242, 215, 0.03);
+  border: 1px solid rgba(255, 242, 215, 0.12);
+  border-radius: 12px;
+  transition:
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    transform 0.35s ease;
+}
+
+.panel:hover {
+  border-color: rgba(255, 242, 215, 0.35);
+  background: rgba(255, 242, 215, 0.05);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 242, 215, 0.85);
+  background: rgba(255, 242, 215, 0.06);
+  border: 1px solid rgba(255, 242, 215, 0.12);
+  border-radius: 6px;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.chip:hover {
+  background: rgba(255, 242, 215, 0.1);
+  border-color: rgba(255, 242, 215, 0.28);
+}
+
+.btn-slim {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff2d7;
+  background: transparent;
+  border: 1px solid rgba(255, 242, 215, 0.25);
+  border-radius: 8px;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-slim:hover {
+  background: #fff2d7;
+  color: #1f1e1d;
+  border-color: #fff2d7;
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Terminal, Code, Briefcase, User, Award, Building2, MapPin, FileText } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Briefcase, User, Award, Building2, MapPin, FileText } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
@@ -10,6 +10,38 @@ import './App.css';
 const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
 
 const sections = ['home', 'about', 'experiences', 'projects', 'skills', 'contact'];
+
+const Reveal = ({ children, className = '', delay = 0 }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('is-visible');
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`reveal ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -141,6 +173,9 @@ const Portfolio = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const iconBtn =
+    "p-3 text-[#FFF2D7] border border-[#FFF2D7]/30 rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] hover:border-[#FFF2D7] transition-all duration-300 hover:scale-105";
+
   return (
     <div className="min-h-screen bg-[#1f1e1d] text-[#FFF2D7] overflow-x-hidden page-noise">
       {/* Scroll timeline */}
@@ -185,13 +220,13 @@ const Portfolio = () => {
               </h1>
               
               <div className="flex justify-center space-x-4 fade-in-up-delay-3">
-                <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] transition-all hover:scale-110">
+                <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className={iconBtn}>
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="https://www.linkedin.com/in/neiv-gupta/" target="_blank" rel="noopener noreferrer" className="p-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] transition-all hover:scale-110">
+                <a href="https://www.linkedin.com/in/neiv-gupta/" target="_blank" rel="noopener noreferrer" className={iconBtn}>
                   <Linkedin className="w-6 h-6" />
                 </a>
-                <a href="mailto:neiv06@g.ucla.edu" className="p-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] transition-all hover:scale-110">
+                <a href="mailto:neiv06@g.ucla.edu" className={iconBtn}>
                   <Mail className="w-6 h-6" />
                 </a>
                 <a
@@ -199,7 +234,7 @@ const Portfolio = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Resume"
-                  className="p-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] transition-all hover:scale-110"
+                  className={iconBtn}
                 >
                   <FileText className="w-6 h-6" />
                 </a>
@@ -209,7 +244,7 @@ const Portfolio = () => {
 
         <button
           onClick={() => scrollToSection('about')}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#FFF2D7]/50 hover:text-[#FFF2D7] transition-colors scroll-indicator"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#FFF2D7]/45 hover:text-[#FFF2D7] transition-colors"
           aria-label="Scroll to about"
         >
           <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
@@ -226,47 +261,37 @@ const Portfolio = () => {
           </h2>
           
           <div className="flex flex-col md:flex-row items-start gap-8">
-            {/* Profile Image */}
-            <div className="flex-shrink-0">
+            <Reveal className="flex-shrink-0">
               <div className="relative">
-                <div className="absolute inset-0 bg-[#FFF2D7] rounded-full blur-2xl opacity-20 animate-pulse"></div>
                 <img 
                   src={profileImage} 
                   alt="Neiv Gupta" 
-                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-[#FFF2D7]/25 shadow-2xl hover:border-[#FFF2D7] transition-all duration-300 hover:scale-105"
+                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl object-cover border border-[#FFF2D7]/15 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#FFF2D7]/40 transition-all duration-500"
                 />
               </div>
-            </div>
+            </Reveal>
             
-            <div className="flex-1 bg-transparent p-8 rounded-xl border border-[#FFF2D7]/20 hover:border-[#FFF2D7] transition-all hover:shadow-[0_0_30px_rgba(255,242,215,0.25)]">
-            <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
-              I am a second-year computer science student at UCLA, passionate about building practical applications 
-              that solve real-world problems.
-            </p>
-            <br />
-            <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
-              Most recently, I worked as a Software Engineering Intern at ThinkScan Technologies, an AI startup where 
-              I developed low-power AI agents for computer vision tasks. My research experience includes applying deep learning
-              and computer vision techniques to environmental monitoring with the Argonne National Laboratory and the Northern Change Research
-              Laboratory at Brown University.
-            </p>
-            <br />
-            <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
-              I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. 
-              When I'm not coding, you can find me cooking, running, and weightlifting. 
-              I'm always excited to collaborate on projects that create meaningful impact.
-            </p>
-            </div>
-          </div>
-
-          <div className="flex justify-center mt-16">
-            <button
-              onClick={() => scrollToSection('experiences')}
-              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <span>Experiences</span>
-              <ChevronDown className="w-5 h-5" />
-            </button>
+            <Reveal className="flex-1" delay={120}>
+              <div className="panel p-8">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                  I am a second-year computer science student at UCLA, passionate about building practical applications 
+                  that solve real-world problems.
+                </p>
+                <br />
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                  Most recently, I worked as a Software Engineering Intern at ThinkScan Technologies, an AI startup where 
+                  I developed low-power AI agents for computer vision tasks. My research experience includes applying deep learning
+                  and computer vision techniques to environmental monitoring with the Argonne National Laboratory and the Northern Change Research
+                  Laboratory at Brown University.
+                </p>
+                <br />
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                  I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. 
+                  When I'm not coding, you can find me cooking, running, and weightlifting. 
+                  I'm always excited to collaborate on projects that create meaningful impact.
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -279,57 +304,41 @@ const Portfolio = () => {
             Professional Experience
           </h2>
           
-          <div className="space-y-8">
+          <div className="space-y-6">
             {experiences.map((exp, idx) => (
-              <div 
-                key={idx}
-                className="bg-transparent rounded-xl p-8 border border-[#FFF2D7]/20 hover:border-[#FFF2D7] transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,242,215,0.25)]"
-              >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-[#FFF2D7] mb-2">{exp.title}</h3>
-                    <div className="flex flex-col md:flex-row md:items-center md:space-x-4 text-[#FFF2D7]/75 mb-4">
-                      <span className="font-semibold">{exp.company}</span>
-                      <span className="hidden md:inline">•</span>
-                      <span>{exp.location}</span>
+              <Reveal key={idx} delay={idx * 90}>
+                <div className="panel p-7 md:p-8">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-[#FFF2D7] mb-2">{exp.title}</h3>
+                      <div className="flex flex-col md:flex-row md:items-center md:space-x-3 text-[#FFF2D7]/70">
+                        <span className="font-semibold text-[#FFF2D7]/90">{exp.company}</span>
+                        <span className="hidden md:inline text-[#FFF2D7]/30">/</span>
+                        <span>{exp.location}</span>
+                      </div>
+                    </div>
+                    <div className="text-[#FFF2D7]/45 font-mono text-sm tracking-wide">
+                      {exp.period}
                     </div>
                   </div>
-                  <div className="text-[#FFF2D7]/60 font-mono text-sm md:text-base">
-                    {exp.period}
+                  
+                  <ul className="space-y-2.5 mb-6">
+                    {exp.description.map((item, i) => (
+                      <li key={i} className="text-[#FFF2D7]/70 flex items-start">
+                        <span className="text-[#FFF2D7]/40 mr-3 mt-1.5 text-[0.5rem]">●</span>
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="flex flex-wrap gap-2 pt-5 border-t border-[#FFF2D7]/10">
+                    {exp.technologies.map((tech, i) => (
+                      <span key={i} className="chip">{tech}</span>
+                    ))}
                   </div>
                 </div>
-                
-                <ul className="space-y-2 mb-6">
-                  {exp.description.map((item, i) => (
-                    <li key={i} className="text-[#FFF2D7]/75 flex items-start">
-                      <span className="text-[#FFF2D7] mr-2">▹</span>
-                      <span className="leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-[#FFF2D7]/20">
-                  {exp.technologies.map((tech, i) => (
-                    <span 
-                      key={i}
-                      className="px-3 py-1 bg-[#FFF2D7]/15 text-[#FFF2D7] rounded-full text-xs font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </Reveal>
             ))}
-          </div>
-
-          <div className="flex justify-center mt-16">
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <span>Projects</span>
-              <ChevronDown className="w-5 h-5" />
-            </button>
           </div>
         </div>
       </section>
@@ -342,68 +351,52 @@ const Portfolio = () => {
             Featured Projects
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, idx) => (
-              <div 
-                key={idx}
-                className="bg-transparent rounded-xl p-6 border border-[#FFF2D7]/20 hover:border-[#FFF2D7] transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,242,215,0.25)] group"
-              >
-                {project.image && (
-                  <div className="mb-4 rounded-lg overflow-hidden border border-[#FFF2D7]/20">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
+              <Reveal key={idx} delay={idx * 100}>
+                <div className="panel p-5 h-full flex flex-col group">
+                  {project.image && (
+                    <div className="mb-5 overflow-hidden rounded-lg border border-[#FFF2D7]/10">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-44 object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      />
+                    </div>
+                  )}
+                  
+                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                  <p className="text-[#FFF2D7]/55 mb-4 text-sm leading-relaxed flex-1">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tags.map((tag, i) => (
+                      <span key={i} className="chip">{tag}</span>
+                    ))}
                   </div>
-                )}
-                
-                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                <p className="text-[#FFF2D7]/60 mb-4 text-sm leading-relaxed">{project.description}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, i) => (
-                    <span 
-                      key={i}
-                      className="px-3 py-1 bg-[#FFF2D7]/15 text-[#FFF2D7] rounded-full text-xs font-medium"
+                  
+                  <div className="flex gap-2 mt-auto">
+                    <a 
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-slim flex-1"
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      <Github className="w-4 h-4" />
+                      <span>GitHub</span>
+                    </a>
+                    <a 
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-slim flex-1"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Demo</span>
+                    </a>
+                  </div>
                 </div>
-                
-                <div className="flex gap-2 mt-4">
-                  <a 
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 px-4 py-2 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center justify-center space-x-2 text-sm"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </a>
-                  <a 
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 px-4 py-2 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center justify-center space-x-2 text-sm"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Demo</span>
-                  </a>
-                </div>
-              </div>
+              </Reveal>
             ))}
-          </div>
-
-          <div className="flex justify-center mt-16">
-            <button
-              onClick={() => scrollToSection('skills')}
-              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <span>Skills</span>
-              <ChevronDown className="w-5 h-5" />
-            </button>
           </div>
         </div>
       </section>
@@ -416,35 +409,19 @@ const Portfolio = () => {
             Technical Skills
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5">
             {skills.map((skillSet, idx) => (
-              <div 
-                key={idx}
-                className="bg-transparent rounded-xl p-6 border border-[#FFF2D7]/20 hover:border-[#FFF2D7] transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,242,215,0.25)]"
-              >
-                <h3 className="text-xl font-bold mb-4 text-[#FFF2D7]">{skillSet.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skillSet.items.map((skill, i) => (
-                    <span 
-                      key={i}
-                      className="px-4 py-2 bg-[#FFF2D7]/10 rounded-lg text-sm hover:bg-[#FFF2D7]/25 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+              <Reveal key={idx} delay={idx * 90}>
+                <div className="panel p-6 h-full">
+                  <h3 className="text-lg font-bold mb-4 text-[#FFF2D7] tracking-wide">{skillSet.category}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {skillSet.items.map((skill, i) => (
+                      <span key={i} className="chip">{skill}</span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
-          </div>
-
-          <div className="flex justify-center mt-16">
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <span>Contact</span>
-              <ChevronDown className="w-5 h-5" />
-            </button>
           </div>
         </div>
       </section>
@@ -452,67 +429,53 @@ const Portfolio = () => {
       {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center py-20 relative">
         <div className="max-w-2xl mx-auto px-6 text-center z-10">
-          <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
-          <p className="text-xl text-[#FFF2D7]/75 mb-8">
-            I'm always open to discussing new projects, opportunities, or collaborations.
-          </p>
-          
-          {/* Contact Info */}
-          <div className="mb-12">
-            <a
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105"
-            >
-              <MapPin className="w-5 h-5" />
-              <span>Los Angeles, CA</span>
-            </a>
-          </div>
-          
-          {/* Links */}
-          <div className="flex flex-wrap justify-center gap-4">
-            <a 
-              href="mailto:neiv06@g.ucla.edu"
-              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <Mail className="w-5 h-5" />
-              <span>Email</span>
-            </a>
+          <Reveal>
+            <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
+            <p className="text-xl text-[#FFF2D7]/65 mb-10">
+              I'm always open to discussing new projects, opportunities, or collaborations.
+            </p>
             
-            <a 
-              href="https://github.com/neiv06"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <Github className="w-5 h-5" />
-              <span>GitHub</span>
-            </a>
+            <div className="mb-10">
+              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#FFF2D7]/20 rounded-lg text-[#FFF2D7]/80">
+                <MapPin className="w-5 h-5" />
+                <span>Los Angeles, CA</span>
+              </span>
+            </div>
             
-            <a 
-              href="https://www.linkedin.com/in/neiv-gupta/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span>LinkedIn</span>
-            </a>
-          </div>
-
-          <div className="flex justify-center mt-16">
-            <button
-              onClick={() => scrollToSection('home')}
-              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
-            >
-              <span>Back to top</span>
-            </button>
-          </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              <a href="mailto:neiv06@g.ucla.edu" className="btn-slim px-6 py-3">
+                <Mail className="w-5 h-5" />
+                <span>Email</span>
+              </a>
+              
+              <a 
+                href="https://github.com/neiv06"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-slim px-6 py-3"
+              >
+                <Github className="w-5 h-5" />
+                <span>GitHub</span>
+              </a>
+              
+              <a 
+                href="https://www.linkedin.com/in/neiv-gupta/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-slim px-6 py-3"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
       
       {/* Footer */}
-      <footer className="border-t border-[#FFF2D7]/15 py-8">
-        <div className="max-w-6xl mx-auto px-6 text-center text-[#FFF2D7]/60">
-          <p className="font-mono">© 2026 Neiv Gupta</p>
+      <footer className="border-t border-[#FFF2D7]/10 py-8">
+        <div className="max-w-6xl mx-auto px-6 text-center text-[#FFF2D7]/45">
+          <p className="font-mono text-sm">© 2026 Neiv Gupta</p>
         </div>
       </footer>
     </div>
