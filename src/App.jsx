@@ -487,9 +487,6 @@ const Portfolio = () => {
         <div className="max-w-2xl mx-auto px-6 text-center z-10">
           <Reveal>
             <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
-            <p className="text-xl text-[#FFF2D7]/65 mb-10">
-              I'm always open to discussing new projects, opportunities, or collaborations.
-            </p>
             
             <div className="mb-10">
               <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#C4A484]/30 rounded-[4px] text-[#C4A484]">
