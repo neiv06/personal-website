@@ -7,7 +7,7 @@ import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
 
-const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume_1.pdf`;
+const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
 
 const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -100,10 +100,10 @@ const Portfolio = () => {
       period: "Apr. 2025 – Sep. 2025",
       description: [
         "Developed an object detection and scene reasoning AI Agent for threat detection in defense field deployments",
-        "Optimized LLM using RAG pipeline over FAISS vector store for semantic retrieval across imagery datasets",
+        "Built multi-modal retrieval system over FAISS vector store for search across CLIP-embedded imagery datasets",
         "Implemented Laplacian variance and bilateral filtering to enhance noisy field imagery for inference"
       ],
-      technologies: ["RAG", "FAISS", "LLM", "Computer Vision", "AI", "Image Processing"]
+      technologies: ["FAISS", "CLIP", "Computer Vision", "AI", "Image Processing"]
     },
     {
       title: "Computer Vision Researcher",
@@ -113,10 +113,9 @@ const Portfolio = () => {
       description: [
         "Deployed TensorFlow/PyTorch CNN pipelines for wildfire response and drought monitoring",
         "Built CLIP-based zero-shot classification model achieving 93% mAP for wildfire and drought imagery datasets",
-        "Fine-tuned OpenCLIP ViT-B/32 multi-modal models on imagery datasets for improved accuracy",
-        "Implemented model pruning and quantization techniques to reduce model size and improve inference speed"
+        "Fine-tuned OpenCLIP ViT-B/32 multi-modal models on imagery datasets for improved accuracy"
       ],
-      technologies: ["TensorFlow", "PyTorch", "CLIP", "OpenCLIP", "Edge Computing", "Computer Vision"]
+      technologies: ["TensorFlow", "PyTorch", "CLIP", "OpenCLIP", "Computer Vision"]
     },
     {
       title: "Geographic Information Systems Intern",
@@ -126,9 +125,9 @@ const Portfolio = () => {
       description: [
         "Executed ResNet-50 transfer learning with TensorFlow/PyTorch, processing Sentinel-2 multi-spectral imagery",
         "Engineered data pipelines using GDAL/Rasterio, creating 15K+ labeled training samples via QGIS digitization",
-        "Contributed to glacial ice loss and sea level rise projections achieved via geodetic mass balance calculations."
+        "Contributed to glacial ice loss and sea level rise projections achieved via geodetic mass balance calculations"
       ],
-      technologies: ["TensorFlow", "PyTorch", "ResNet-50", "U-Net", "GDAL", "QGIS", "Remote Sensing"]
+      technologies: ["TensorFlow", "PyTorch", "ResNet-50", "GDAL", "QGIS", "Remote Sensing"]
     },
     {
       title: "Student Researcher",
@@ -138,8 +137,7 @@ const Portfolio = () => {
       description: [
         "Implemented Random Forest and XGBoost learning algorithms for Sierra Nevada tree species classification",
         "Achieved 96% classification accuracy using ensemble methods on 100,000+ labeled forest imagery samples",
-        "Developed LSTM RNN architecture for wildfire progression prediction from multi-spectral satellite imagery",
-        "Integrated NOAA meteorological APIs and topographical datasets for enhanced feature engineering processes"
+        "Developed LSTM RNN architecture for wildfire progression prediction from multi-spectral satellite imagery"
       ],
       technologies: ["Random Forest", "XGBoost", "LSTM", "RNN", "Machine Learning", "Remote Sensing"]
     }
@@ -191,7 +189,7 @@ const Portfolio = () => {
     },
     { 
       category: "Developer Tools", 
-      items: ["Git", "Github", "Docker", "Railway", "Vercel", "REST APIs", "WebSockets", "MongoDB Atlas", "PostgreSQL", "OpenGL", "CMake", "QGIS", "FAISS"] 
+      items: ["Git", "Github", "Docker", "Railway", "Vercel", "REST APIs", "WebSockets", "MongoDB", "PostgreSQL", "OpenGL", "CMake", "QGIS", "FAISS"] 
     },
     { 
       category: "Libraries", 
