@@ -152,17 +152,20 @@
   color: #c4a484;
 }
 
-.sidebar-panel {
+.sidebar-enter {
+  animation: sidebarIn 0.9s ease forwards;
   opacity: 0;
-  pointer-events: none;
-  transform: translate(12px, -50%);
-  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.sidebar-panel.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(0, -50%);
+@keyframes sidebarIn {
+  from {
+    opacity: 0;
+    transform: translate(12px, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
 }
 
 .scroll-hint {
@@ -180,17 +183,4 @@
 
 .home-stage {
   will-change: opacity, transform;
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-
-.name-crumbs {
-  display: inline-flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
-
-.name-crumb {
-  display: inline-block;
-  will-change: transform, opacity;
 }

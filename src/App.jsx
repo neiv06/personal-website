@@ -43,8 +43,7 @@ const Reveal = ({ children, className = '', delay = 0, asHeading = false }) => {
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [homeProgress, setHomeProgress] = useState(0);
-  const [showScrollHint, setShowScrollHint] = useState(true);
-  const [showTimeline, setShowTimeline] = useState(false);
+  const [showScrollHint, setShowScrollHint] = useState(false);
   const homeProgressRef = useRef(0);
   const idleTimerRef = useRef(null);
   const homeUnlocked = homeProgress >= 1;
@@ -53,8 +52,6 @@ const Portfolio = () => {
     const clamped = Math.min(1, Math.max(0, next));
     homeProgressRef.current = clamped;
     setHomeProgress(clamped);
-    if (clamped > 0.02) setShowTimeline(true);
-    if (clamped <= 0.02) setShowTimeline(false);
   };
 
   useEffect(() => {
@@ -158,12 +155,12 @@ const Portfolio = () => {
     const resetIdle = () => {
       setShowScrollHint(false);
       clearTimeout(idleTimerRef.current);
-      const delay = homeProgressRef.current < 0.05 ? 900 : 2200;
-      idleTimerRef.current = setTimeout(() => setShowScrollHint(true), delay);
+      idleTimerRef.current = setTimeout(() => setShowScrollHint(true), 2200);
     };
 
     const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'wheel', 'scroll'];
     events.forEach((event) => window.addEventListener(event, resetIdle, { passive: true }));
+    resetIdle();
 
     return () => {
       events.forEach((event) => window.removeEventListener(event, resetIdle));
@@ -307,23 +304,8 @@ const Portfolio = () => {
     }
   };
 
-  const nameChars = Array.from('Neiv Gupta');
-  const crumbProgress = Math.min(1, homeProgress / 0.55);
-  const crumbEase = crumbProgress * crumbProgress * (3 - 2 * crumbProgress);
-  const iconsOpacity = Math.min(1, Math.max(0, (homeProgress - 0.55) / 0.35));
-
-  const crumbOffsets = [
-    { x: -120, y: -70, r: -18 },
-    { x: 90, y: -95, r: 14 },
-    { x: -70, y: 80, r: 22 },
-    { x: 130, y: 40, r: -12 },
-    { x: 0, y: 0, r: 0 },
-    { x: -100, y: 55, r: 16 },
-    { x: 110, y: -60, r: -20 },
-    { x: -40, y: -100, r: 10 },
-    { x: 75, y: 90, r: -15 },
-    { x: -130, y: 20, r: 18 },
-  ];
+  const nameOpacity = Math.min(1, homeProgress / 0.45);
+  const iconsOpacity = Math.min(1, Math.max(0, (homeProgress - 0.4) / 0.45));
 
   const iconBtn =
     "p-3 text-[#FFF2D7] border border-[#C4A484]/45 rounded-full hover:bg-[#C4A484] hover:text-[#1f1e1d] hover:border-[#C4A484] transition-all duration-300 hover:scale-105";
@@ -331,12 +313,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-[#1f1e1d] text-[#FFF2D7] overflow-x-hidden page-noise">
       {/* Scroll timeline */}
-      <aside
-        className={`fixed right-6 top-1/2 z-40 hidden md:flex sidebar-panel ${
-          showTimeline ? 'is-visible' : ''
-        }`}
-        aria-label="Page sections"
-      >
+      <aside className="fixed right-6 top-1/2 z-40 hidden md:flex sidebar-enter" aria-label="Page sections">
         <div className="relative flex flex-col justify-between h-64 py-1">
           <div className="absolute right-0 top-0 bottom-0 w-px bg-[#C4A484]/25" aria-hidden="true" />
           <div
@@ -373,32 +350,20 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-6 z-10">
           <div className="text-center">
               <h1
-                className="text-7xl md:text-9xl font-bold mb-4 text-[#FFF2D7] cursor-pointer name-glow name-crumbs"
-                aria-label="Neiv Gupta"
+                className="home-stage text-7xl md:text-9xl font-bold mb-4 text-[#FFF2D7] transition-all duration-300 cursor-pointer name-glow"
+                style={{
+                  opacity: nameOpacity,
+                  transform: `translateY(${(1 - nameOpacity) * 28}px)`,
+                }}
               >
-                {nameChars.map((char, i) => {
-                  const offset = crumbOffsets[i] || { x: 0, y: 0, r: 0 };
-                  const spread = 1 - crumbEase;
-                  return (
-                    <span
-                      key={`${char}-${i}`}
-                      className="name-crumb"
-                      style={{
-                        opacity: crumbProgress <= 0 ? 0 : Math.min(1, 0.15 + crumbProgress * 1.2),
-                        transform: `translate(${offset.x * spread}px, ${offset.y * spread}px) rotate(${offset.r * spread}deg)`,
-                      }}
-                    >
-                      {char === ' ' ? '\u00A0' : char}
-                    </span>
-                  );
-                })}
+                Neiv Gupta
               </h1>
               
               <div
                 className="home-stage flex justify-center space-x-4"
                 style={{
                   opacity: iconsOpacity,
-                  transform: `translateY(${(1 - iconsOpacity) * 14}px)`,
+                  transform: `translateY(${(1 - iconsOpacity) * 18}px)`,
                   pointerEvents: iconsOpacity > 0.2 ? 'auto' : 'none',
                 }}
               >
