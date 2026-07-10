@@ -192,14 +192,6 @@ const Portfolio = () => {
                 Neiv Gupta
               </h1>
               
-              <h2 className="text-xl md:text-2xl text-[#FFF2D7]/85 mb-8 fade-in-up-delay-1">
-                Software Engineer <span className="font-bold mx-2 text-md">✦</span> Researcher <span className="font-bold mx-2 text-md">✦</span> UCLA Student
-              </h2>
-              
-              <p className="text-base md:text-lg text-[#FFF2D7]/75 mb-8 max-w-2xl mx-auto fade-in-up-delay-2">
-               Full-stack developer interested in app development, machine learning systems, computer vision, AI and high-performance GPU computing.
-              </p>
-              
               <div className="flex justify-center space-x-4 mb-4 fade-in-up-delay-3">
                 <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#343231] transition-all hover:scale-110">
                   <Github className="w-6 h-6" />
@@ -264,8 +256,7 @@ const Portfolio = () => {
             <div className="flex-1 bg-transparent p-8 rounded-xl border border-[#FFF2D7]/20 hover:border-[#FFF2D7] transition-all hover:shadow-[0_0_30px_rgba(255,242,215,0.25)]">
             <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
               I am a second-year computer science student at UCLA, passionate about building practical applications 
-              that solve real-world problems. I am currently looking for a Summer 2026 internship where I can continue 
-              to build my skills and tackle new challenges.
+              that solve real-world problems.
             </p>
             <br />
             <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
