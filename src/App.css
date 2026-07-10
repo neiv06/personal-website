@@ -83,18 +83,18 @@
 
 .panel {
   background: transparent;
-  border: 1px solid transparent;
+  border: none;
   border-radius: 4px;
   transition:
-    border-color 0.35s ease,
     background-color 0.35s ease,
-    box-shadow 0.35s ease;
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
 }
 
 .panel:hover {
-  border-color: rgba(196, 164, 132, 0.4);
-  background: rgba(196, 164, 132, 0.06);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  background: rgba(196, 164, 132, 0.05);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+  transform: translateY(-4px);
 }
 
 .chip {
@@ -105,8 +105,8 @@
   font-weight: 500;
   letter-spacing: 0.03em;
   color: #c4a484;
-  background: transparent;
-  border: 1px solid transparent;
+  background: rgba(196, 164, 132, 0.06);
+  border: 1px solid rgba(196, 164, 132, 0.22);
   border-radius: 3px;
   transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
 }

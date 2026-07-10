@@ -531,7 +531,7 @@ const Portfolio = () => {
               <Reveal key={idx} delay={idx * 100}>
                 <div className="panel p-5 h-full flex flex-col group">
                   {project.image && (
-                    <div className="mb-5 overflow-hidden rounded-[4px] border border-transparent group-hover:border-[#C4A484]/30 transition-colors duration-300">
+                    <div className="mb-5 overflow-hidden rounded-[4px]">
                       <img 
                         src={project.image} 
                         alt={project.title}
