@@ -7,7 +7,7 @@
 
   color-scheme: dark;
   color: #FFF2D7;
-  background-color: #343231;
+  background-color: #1f1e1d;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,6 +20,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: "Roboto Serif", serif;
-  background-color: #343231;
+  background-color: #1f1e1d;
   color: #FFF2D7;
 }

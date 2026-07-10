@@ -142,36 +142,34 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#343231] text-[#FFF2D7] overflow-x-hidden">
+    <div className="min-h-screen bg-[#1f1e1d] text-[#FFF2D7] overflow-x-hidden page-noise">
       {/* Scroll timeline */}
-      <aside className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end gap-0" aria-label="Page sections">
-        <div className="relative flex flex-col items-end">
-          <div className="absolute right-[5px] top-2 bottom-2 w-px bg-[#FFF2D7]/20" aria-hidden="true" />
+      <aside className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex" aria-label="Page sections">
+        <div className="relative flex flex-col justify-between h-64 py-1">
+          <div className="absolute right-0 top-0 bottom-0 w-px bg-[#FFF2D7]/20" aria-hidden="true" />
+          <div
+            className="absolute right-0 top-0 w-px bg-[#FFF2D7] transition-all duration-500 ease-out"
+            style={{ height: `${(sections.indexOf(activeSection) / (sections.length - 1)) * 100}%` }}
+            aria-hidden="true"
+          />
           {sections.map((section) => {
             const isActive = activeSection === section;
             return (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="group relative flex items-center gap-3 py-3 pr-0 focus:outline-none"
+                className="group relative flex items-center justify-end pr-4 focus:outline-none"
                 aria-current={isActive ? 'true' : undefined}
               >
                 <span
                   className={`text-xs font-medium tracking-wide capitalize transition-all duration-300 ${
                     isActive
-                      ? 'opacity-100 text-[#FFF2D7] translate-x-0'
-                      : 'opacity-0 -translate-x-1 text-[#FFF2D7]/60 group-hover:opacity-100 group-hover:translate-x-0'
+                      ? 'opacity-100 text-[#FFF2D7]'
+                      : 'opacity-40 text-[#FFF2D7] group-hover:opacity-100'
                   }`}
                 >
                   {section}
                 </span>
-                <span
-                  className={`relative z-10 block rounded-full border transition-all duration-300 ${
-                    isActive
-                      ? 'h-3 w-3 border-[#FFF2D7] bg-[#FFF2D7] shadow-[0_0_12px_rgba(255,242,215,0.5)]'
-                      : 'h-2.5 w-2.5 border-[#FFF2D7]/40 bg-[#343231] group-hover:border-[#FFF2D7] group-hover:scale-110'
-                  }`}
-                />
               </button>
             );
           })}
@@ -186,39 +184,37 @@ const Portfolio = () => {
                 Neiv Gupta
               </h1>
               
-              <div className="flex justify-center space-x-4 mb-4 fade-in-up-delay-3">
-                <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#343231] transition-all hover:scale-110">
+              <div className="flex justify-center space-x-4 fade-in-up-delay-3">
+                <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className="p-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] transition-all hover:scale-110">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="https://www.linkedin.com/in/neiv-gupta/" target="_blank" rel="noopener noreferrer" className="p-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#343231] transition-all hover:scale-110">
+                <a href="https://www.linkedin.com/in/neiv-gupta/" target="_blank" rel="noopener noreferrer" className="p-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] transition-all hover:scale-110">
                   <Linkedin className="w-6 h-6" />
                 </a>
-                <a href="mailto:neiv06@g.ucla.edu" className="p-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#343231] transition-all hover:scale-110">
+                <a href="mailto:neiv06@g.ucla.edu" className="p-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] transition-all hover:scale-110">
                   <Mail className="w-6 h-6" />
                 </a>
-              </div>
-              
-              <div className="flex justify-center">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <a
-                    href={resume}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-8 py-4 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 fade-in-up-delay-3 inline-flex items-center justify-center space-x-2"
-                  >
-                    <FileText className="w-5 h-5" />
-                    <span>Resume</span>
-                  </a>
-                  <button 
-                    onClick={() => scrollToSection('about')}
-                    className="px-8 py-4 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 fade-in-up-delay-3"
-                  >
-                    About Me
-                  </button>
-                </div>
+                <a
+                  href={resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Resume"
+                  className="p-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] rounded-full hover:bg-[#FFF2D7] hover:text-[#1f1e1d] transition-all hover:scale-110"
+                >
+                  <FileText className="w-6 h-6" />
+                </a>
               </div>
           </div>
         </div>
+
+        <button
+          onClick={() => scrollToSection('about')}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[#FFF2D7]/50 hover:text-[#FFF2D7] transition-colors scroll-indicator"
+          aria-label="Scroll to about"
+        >
+          <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
+          <ChevronDown className="w-5 h-5" />
+        </button>
       </section>
       
       {/* About Section */}
@@ -266,7 +262,7 @@ const Portfolio = () => {
           <div className="flex justify-center mt-16">
             <button
               onClick={() => scrollToSection('experiences')}
-              className="px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
+              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <span>Experiences</span>
               <ChevronDown className="w-5 h-5" />
@@ -329,7 +325,7 @@ const Portfolio = () => {
           <div className="flex justify-center mt-16">
             <button
               onClick={() => scrollToSection('projects')}
-              className="px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
+              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <span>Projects</span>
               <ChevronDown className="w-5 h-5" />
@@ -381,7 +377,7 @@ const Portfolio = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 px-4 py-2 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center justify-center space-x-2 text-sm"
+                    className="flex-1 px-4 py-2 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center justify-center space-x-2 text-sm"
                   >
                     <Github className="w-4 h-4" />
                     <span>GitHub</span>
@@ -390,7 +386,7 @@ const Portfolio = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 px-4 py-2 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center justify-center space-x-2 text-sm"
+                    className="flex-1 px-4 py-2 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center justify-center space-x-2 text-sm"
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span>Demo</span>
@@ -403,7 +399,7 @@ const Portfolio = () => {
           <div className="flex justify-center mt-16">
             <button
               onClick={() => scrollToSection('skills')}
-              className="px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
+              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <span>Skills</span>
               <ChevronDown className="w-5 h-5" />
@@ -444,7 +440,7 @@ const Portfolio = () => {
           <div className="flex justify-center mt-16">
             <button
               onClick={() => scrollToSection('contact')}
-              className="px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
+              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <span>Contact</span>
               <ChevronDown className="w-5 h-5" />
@@ -464,7 +460,7 @@ const Portfolio = () => {
           {/* Contact Info */}
           <div className="mb-12">
             <a
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105"
+              className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105"
             >
               <MapPin className="w-5 h-5" />
               <span>Los Angeles, CA</span>
@@ -475,7 +471,7 @@ const Portfolio = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <a 
               href="mailto:neiv06@g.ucla.edu"
-              className="px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
+              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <Mail className="w-5 h-5" />
               <span>Email</span>
@@ -485,7 +481,7 @@ const Portfolio = () => {
               href="https://github.com/neiv06"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
+              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <Github className="w-5 h-5" />
               <span>GitHub</span>
@@ -495,7 +491,7 @@ const Portfolio = () => {
               href="https://www.linkedin.com/in/neiv-gupta/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
+              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <Linkedin className="w-5 h-5" />
               <span>LinkedIn</span>
@@ -505,7 +501,7 @@ const Portfolio = () => {
           <div className="flex justify-center mt-16">
             <button
               onClick={() => scrollToSection('home')}
-              className="px-6 py-3 bg-[#343231] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#343231] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
+              className="px-6 py-3 bg-[#1f1e1d] text-[#FFF2D7] border-2 border-[#FFF2D7] hover:bg-[#FFF2D7] hover:text-[#1f1e1d] rounded-lg font-medium transition-all hover:scale-105 flex items-center space-x-2"
             >
               <span>Back to top</span>
             </button>
