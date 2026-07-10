@@ -20,12 +20,9 @@ const Reveal = ({ children, className = '', delay = 0 }) => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('is-visible');
-          observer.unobserve(el);
-        }
+        el.classList.toggle('is-visible', entry.isIntersecting);
       },
-      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
     );
 
     observer.observe(el);
@@ -266,7 +263,7 @@ const Portfolio = () => {
                 <img 
                   src={profileImage} 
                   alt="Neiv Gupta" 
-                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl object-cover border border-[#FFF2D7]/15 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#FFF2D7]/40 transition-all duration-500"
+                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-none object-cover border border-[#FFF2D7]/15 shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#FFF2D7]/40 transition-all duration-500"
                 />
               </div>
             </Reveal>
@@ -356,7 +353,7 @@ const Portfolio = () => {
               <Reveal key={idx} delay={idx * 100}>
                 <div className="panel p-5 h-full flex flex-col group">
                   {project.image && (
-                    <div className="mb-5 overflow-hidden rounded-lg border border-[#FFF2D7]/10">
+                    <div className="mb-5 overflow-hidden rounded-none border border-[#FFF2D7]/10">
                       <img 
                         src={project.image} 
                         alt={project.title}
@@ -436,7 +433,7 @@ const Portfolio = () => {
             </p>
             
             <div className="mb-10">
-              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#FFF2D7]/20 rounded-lg text-[#FFF2D7]/80">
+              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#FFF2D7]/20 rounded-none text-[#FFF2D7]/80">
                 <MapPin className="w-5 h-5" />
                 <span>Los Angeles, CA</span>
               </span>
