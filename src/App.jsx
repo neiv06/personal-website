@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, ChevronDown, Briefcase, User, Award, Building2, MapPin, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ChevronDown, MapPin, FileText } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
@@ -352,7 +352,7 @@ const Portfolio = () => {
                 aria-current={isActive ? 'true' : undefined}
               >
                 <span
-                  className={`text-[10px] font-medium tracking-[0.18em] uppercase transition-all duration-300 ${
+                  className={`font-ui text-[10px] font-medium tracking-[0.18em] uppercase transition-all duration-300 ${
                     isActive
                       ? 'opacity-100 text-[#C4A484]'
                       : 'opacity-40 text-[#FFF2D7] group-hover:opacity-100 group-hover:text-[#C4A484]'
@@ -413,7 +413,7 @@ const Portfolio = () => {
 
       <button
         onClick={goNext}
-        className={`scroll-hint fixed bottom-10 left-1/2 z-50 flex flex-col items-center gap-2 text-[#C4A484]/80 hover:text-[#C4A484] transition-colors ${
+        className={`scroll-hint font-ui fixed bottom-10 left-1/2 z-50 flex flex-col items-center gap-2 text-[#C4A484]/80 hover:text-[#C4A484] transition-colors ${
           showScrollHint ? 'is-visible' : ''
         }`}
         aria-label={homeUnlocked ? 'Scroll to next section' : 'Reveal home'}
@@ -428,8 +428,7 @@ const Portfolio = () => {
       <section id="about" className="min-h-screen flex items-center py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-12 flex items-center">
-              <User className="w-10 h-10 mr-4 accent-icon" />
+            <h2 className="text-4xl font-bold mb-12">
               About Me
             </h2>
           </Reveal>
@@ -447,19 +446,19 @@ const Portfolio = () => {
             
             <Reveal className="flex-1" delay={120}>
               <div className="panel p-8">
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg font-display">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
                   I am a second-year computer science student at UCLA, passionate about building practical applications 
                   that solve real-world problems.
                 </p>
                 <br />
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg font-display">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
                   Most recently, I worked as a Software Engineering Intern at ThinkScan Technologies, an AI startup where 
                   I developed low-power AI agents for computer vision tasks. My research experience includes applying deep learning
                   and computer vision techniques to environmental monitoring with the Argonne National Laboratory and the Northern Change Research
                   Laboratory at Brown University.
                 </p>
                 <br />
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg font-display">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
                   I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. 
                   When I'm not coding, you can find me cooking, running, and weightlifting. 
                   I'm always excited to collaborate on projects that create meaningful impact.
@@ -474,8 +473,7 @@ const Portfolio = () => {
       <section id="experiences" className="min-h-screen py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-12 flex items-center">
-              <Building2 className="w-10 h-10 mr-4 accent-icon" />
+            <h2 className="text-4xl font-bold mb-12">
               Professional Experience
             </h2>
           </Reveal>
@@ -523,8 +521,7 @@ const Portfolio = () => {
       <section id="projects" className="min-h-screen py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-12 flex items-center">
-              <Briefcase className="w-10 h-10 mr-4 accent-icon" />
+            <h2 className="text-4xl font-bold mb-12">
               Featured Projects
             </h2>
           </Reveal>
@@ -583,8 +580,7 @@ const Portfolio = () => {
       <section id="skills" className="min-h-screen py-20 relative">
         <div className="max-w-4xl mx-auto px-6 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-12 flex items-center">
-              <Award className="w-10 h-10 mr-4 accent-icon" />
+            <h2 className="text-4xl font-bold mb-12">
               Technical Skills
             </h2>
           </Reveal>
@@ -613,7 +609,7 @@ const Portfolio = () => {
         <div className="max-w-2xl mx-auto px-6 text-center z-10">
           <Reveal>
             <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
-            <p className="text-xl text-[#FFF2D7]/65 mb-10 font-display">
+            <p className="text-xl text-[#FFF2D7]/65 mb-10">
               I'm always open to discussing new projects, opportunities, or collaborations.
             </p>
             
