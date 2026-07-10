@@ -6,7 +6,7 @@
   --coffee-soft: rgba(196, 164, 132, 0.35);
   --ink: #1f1e1d;
   --font-display: "Roboto Serif", serif;
-  --font-ui: "Outfit", sans-serif;
+  --font-ui: "Space Grotesk", sans-serif;
 
   font-family: var(--font-ui);
   line-height: 1.5;
