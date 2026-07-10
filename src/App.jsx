@@ -485,16 +485,20 @@ const Portfolio = () => {
       {/* Contact Section */}
       <section id="contact" className="min-h-screen flex items-center py-20 relative">
         <div className="max-w-2xl mx-auto px-6 text-center z-10">
-          <Reveal>
+          <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
-            
+          </Reveal>
+
+          <Reveal delay={100}>
             <div className="mb-10">
               <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#C4A484]/30 rounded-[4px] text-[#C4A484]">
                 <MapPin className="w-5 h-5" />
                 <span>Los Angeles, CA</span>
               </span>
             </div>
-            
+          </Reveal>
+
+          <Reveal delay={200}>
             <div className="flex flex-wrap justify-center gap-3">
               <a href="mailto:neiv06@g.ucla.edu" className="btn-slim px-6 py-3">
                 <Mail className="w-5 h-5" />
