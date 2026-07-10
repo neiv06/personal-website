@@ -339,7 +339,7 @@ const Portfolio = () => {
                 <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
                   I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. 
                   When I'm not coding, you can find me cooking, running, and weightlifting. 
-                  I'm always excited to collaborate on projects that create meaningful impact.
+                  I'm always excited to collaborate on projects that create meaningful impacts.
                 </p>
               </div>
             </Reveal>
