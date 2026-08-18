@@ -342,7 +342,7 @@ const Portfolio = () => {
     {
       image: "IMG_7697.JPG",
       title: "Red-wine braised lamb shank with sweet potato mash",
-      caption: "My favorite thing to cook. The lamb is marinated overnight, then slow-cooked for four hours. A long process, but worth it in the end."
+      caption: "My favorite dish to cook. The lamb is marinated overnight, then slow-cooked for four hours. A long process, but worth it in the end."
     },
     {
       image: "IMG_8040.JPG",

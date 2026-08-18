@@ -54,7 +54,7 @@ export default async function handler(req, res) {
     let current = null;
     if (nowPlayingRes.status === 200) {
       const data = await nowPlayingRes.json();
-      if (data && data.item) {
+      if (data && data.item && data.is_playing) {
         current = { isPlaying: true, ...toTrackSummary(data.item) };
       }
     }
