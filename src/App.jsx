@@ -232,7 +232,7 @@ const Portfolio = () => {
       company: "Pairwise Technologies",
       location: "Los Angeles, CA",
       period: "June 2026 – Present",
-      description: "Built Django backend services and a semantic-and-lexical deduplication pipeline, and engineered FastMCP and OAuth integrations for Claude Connector workflows."
+      description: "Built Django backend services and a semantic-and-lexical deduplication pipeline, and engineered FastMCP and OAuth CIMD integrations for Claude Connector workflows."
     },
     {
       title: "Undergraduate Student Researcher",
