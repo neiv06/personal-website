@@ -5,3 +5,5 @@ dist
 # public/Neiv_Gupta_Resume.pdf
 # **/*Resume*.pdf
 # **/*resume*.pdf
+.vercel
+.env*
