@@ -321,8 +321,8 @@ const Portfolio = () => {
   const cookingGallery = [
     {
       image: "IMG_0298.JPG",
-      title: "Spicy chicken curry",
-      caption: "Inspired by Vij's recipe. My dad would always cook this for me when I was a kid."
+      title: "Spicy masala chicken curry",
+      caption: "Inspired by Vij's recipe. My dad would always cook this for me when I was a kid. Garam masala, smoked paprika, turmeric, cumin, coriander, cayenne, cinnamon, and black pepper."
     },
     {
       image: "IMG_6556.jpg",
