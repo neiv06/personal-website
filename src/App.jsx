@@ -11,7 +11,7 @@ const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
 const stravaProfileUrl = 'https://www.strava.com/athletes/2047652902';
 const spotifyProfileUrl = 'https://open.spotify.com/user/uhvto2o8rz5yv89376o7y1noi';
 
-const sections = ['home', 'about', 'experiences', 'projects', 'skills', 'interests', 'contact'];
+const sections = ['home', 'introduction', 'experiences', 'projects', 'skills', 'interests', 'contact'];
 
 const Reveal = ({ children, className = '', delay = 0, asHeading = false }) => {
   const ref = useRef(null);
@@ -322,7 +322,7 @@ const Portfolio = () => {
     {
       image: "IMG_0298.JPG",
       title: "Spicy chicken curry",
-      caption: "Inspired by Vij's recipe. My dad would always cook this for me when I was a kid, so I thought I would try it myself."
+      caption: "Inspired by Vij's recipe. My dad would always cook this for me when I was a kid."
     },
     {
       image: "IMG_6556.jpg",
@@ -372,7 +372,7 @@ const Portfolio = () => {
     {
       image: "IMG_7807.JPG",
       title: "Baked salmon, ahi tuna steak, sweet potato, egg, and gochujang",
-      caption: "Was in the mood for fish. Added a little bit of spice with the gochujang."
+      caption: "Was in the mood for fish. Added a little bit of spice."
     },
     {
       image: "IMG_7860.jpg",
@@ -503,7 +503,7 @@ const Portfolio = () => {
       </button>
       
       {/* Introduction Section */}
-      <section id="about" className="min-h-screen flex items-center py-20 relative">
+      <section id="introduction" className="min-h-screen flex items-center py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-12">
@@ -552,7 +552,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-12">
-              Experience
+              Experiences
             </h2>
           </Reveal>
           
@@ -592,7 +592,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-12">
-              Featured Projects
+              Projects
             </h2>
           </Reveal>
           
