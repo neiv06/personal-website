@@ -378,6 +378,11 @@ const Portfolio = () => {
       image: "IMG_7860.jpg",
       title: "Filipino chicken adobo over sweet potato",
       caption: "The sauce came out a bit brothy, but it was still tasty. I will make the sauce a bit thicker next time."
+    },
+    {
+      image: "IMG_0344.JPG",
+      title: "Tomato turkey boat",
+      caption: "Spiced up the turkey mince with paprika, cumin, cayenne, and turmeric. Cooked with a sautee of garlic, onions, and peppers. Served in a boat of baked sweet potato."
     }
   ];
   
