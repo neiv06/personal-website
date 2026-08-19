@@ -60,12 +60,17 @@ export default async function handler(req, res) {
     }
 
     let recentTracks = [];
+    let recentDebug = null;
     if (recentRes.ok) {
       const recentData = await recentRes.json();
       recentTracks = (recentData.items ?? []).map((item) => ({
         ...toTrackSummary(item.track),
         playedAt: item.played_at,
       }));
+    } else {
+      const bodyText = await recentRes.text();
+      console.error(`Spotify recently-played failed: ${recentRes.status} ${bodyText}`);
+      recentDebug = { status: recentRes.status, body: bodyText };
     }
 
     res.setHeader('Cache-Control', 's-maxage=30');
@@ -74,19 +79,26 @@ export default async function handler(req, res) {
       return res.status(200).json({
         ...current,
         recentTracks: recentTracks.slice(0, 5),
+        ...(recentDebug ? { recentDebug } : {}),
       });
     }
 
     const [last, ...rest] = recentTracks;
 
     if (!last) {
-      return res.status(200).json({ isPlaying: false, track: null, recentTracks: [] });
+      return res.status(200).json({
+        isPlaying: false,
+        track: null,
+        recentTracks: [],
+        ...(recentDebug ? { recentDebug } : {}),
+      });
     }
 
     return res.status(200).json({
       isPlaying: false,
       ...last,
       recentTracks: rest.slice(0, 5),
+      ...(recentDebug ? { recentDebug } : {}),
     });
   } catch (err) {
     console.error(err);
