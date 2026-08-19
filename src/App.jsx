@@ -382,7 +382,7 @@ const Portfolio = () => {
     {
       image: "IMG_0344.JPG",
       title: "Tomato turkey boat",
-      caption: "Spiced up the turkey mince with paprika, cumin, cayenne, and turmeric. Cooked with a sautee of garlic, onions, and peppers. Served in a boat of baked sweet potato."
+      caption: "Spiced up the turkey mince with paprika, cumin, cayenne, and turmeric. Cooked with diced tomatoes, garlic, and onions. Served in a boat of baked sweet potato."
     }
   ];
   
