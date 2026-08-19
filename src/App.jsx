@@ -232,7 +232,7 @@ const Portfolio = () => {
       company: "Pairwise Technologies",
       location: "Los Angeles, CA",
       period: "June 2026 – Present",
-      description: "Built Django backend services and a semantic-and-lexical deduplication pipeline, and engineered FastMCP and OAuth integrations for Claude Connector workflows."
+      description: "Built Django backend services and a semantic-and-lexical deduplication pipeline, and engineered FastMCP and OAuth CIMD integrations for Claude Connector workflows."
     },
     {
       title: "Undergraduate Student Researcher",
@@ -321,8 +321,8 @@ const Portfolio = () => {
   const cookingGallery = [
     {
       image: "IMG_0298.JPG",
-      title: "Spicy chicken curry",
-      caption: "Inspired by Vij's recipe. My dad would always cook this for me when I was a kid."
+      title: "Spicy masala chicken curry",
+      caption: "Inspired by Vij's recipe. My dad would always cook this for me when I was a kid. Garam masala, smoked paprika, turmeric, cumin, coriander, cayenne, cinnamon, and black pepper."
     },
     {
       image: "IMG_6556.jpg",
@@ -342,7 +342,7 @@ const Portfolio = () => {
     {
       image: "IMG_7697.JPG",
       title: "Red-wine braised lamb shank with sweet potato mash",
-      caption: "My favorite thing to cook. The lamb is marinated overnight, then slow-cooked for four hours. A long process, but worth it in the end."
+      caption: "My favorite dish to cook. The lamb is marinated overnight, then slow-cooked for four hours. A long process, but worth it in the end."
     },
     {
       image: "IMG_8040.JPG",
