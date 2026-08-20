@@ -685,9 +685,9 @@ const Portfolio = () => {
               <div className="currently-section-heading">
                 <div>
                   <p className="font-ui text-xs font-medium tracking-[0.12em] text-[#C4A484] uppercase">
-                    In the kitchen
+                    Cooking 
                   </p>
-                  <h3 className="mt-2 text-xl font-bold">Cheffing it up</h3>
+
                 </div>
                 <div className="cooking-carousel-controls">
                   <button
