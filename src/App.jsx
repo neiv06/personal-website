@@ -386,18 +386,6 @@ const Portfolio = () => {
     }
   ];
   
-  const hockeyGallery = [
-    'DSC00707.JPEG',
-    'DSC01370.JPEG',
-    'DSC09614.JPEG',
-    'IMG_5958.JPG',
-    'IMG_6142.JPG',
-    'IMG_6195.jpg',
-    'IMG_6971.jpg',
-    'IMG_6972.JPG',
-    'UCLA Hockey 2749 250928.JPEG',
-  ];
-
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -693,8 +681,7 @@ const Portfolio = () => {
           </Reveal>
 
           <div className="currently-layout">
-            <div className="flex flex-col gap-5">
-              <Reveal className="currently-cooking" delay={160}>
+            <Reveal className="currently-cooking" delay={160}>
               <div className="currently-section-heading">
                 <div>
                   <p className="font-ui text-xs font-medium tracking-[0.12em] text-[#C4A484] uppercase">
@@ -751,33 +738,6 @@ const Portfolio = () => {
                 </div>
               </div>
             </Reveal>
-
-            <Reveal className="currently-hockey" delay={200}>
-              <div className="currently-section-heading">
-                <div>
-                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[#C4A484] uppercase">
-                    On the ice
-                  </p>
-                  <h3 className="mt-2 text-xl font-bold">Hockey</h3>
-                </div>
-              </div>
-
-              <div className="hockey-conveyor">
-                <div className="hockey-conveyor-track">
-                  {[...hockeyGallery, ...hockeyGallery].map((photo, idx) => (
-                    <div key={`${photo}-${idx}`} className="hockey-conveyor-card">
-                      <img
-                        src={`${import.meta.env.BASE_URL}hockey/${encodeURIComponent(photo)}`}
-                        alt="UCLA hockey"
-                        className="hockey-conveyor-image"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </div>
 
             <Reveal className="currently-services" delay={240}>
               <article className="current-service-card">
