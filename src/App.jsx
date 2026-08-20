@@ -668,14 +668,14 @@ const Portfolio = () => {
       </section>
       
       {/* Interests Section */}
-      <section id="interests" className="py-12 relative">
+      <section id="interests" className="py-8 relative">
         <div className="max-w-6xl mx-auto px-6 md:pr-24 z-10">
           <Reveal asHeading>
             <h2 className="text-4xl font-bold mb-3">Interests</h2>
           </Reveal>
 
           <Reveal delay={100}>
-            <p className="font-ui text-sm font-medium tracking-[0.12em] text-[#C4A484] uppercase mb-6">
+            <p className="font-ui text-sm font-medium tracking-[0.12em] text-[#C4A484] uppercase mb-4">
               A bit more about me
             </p>
           </Reveal>
