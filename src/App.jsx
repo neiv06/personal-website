@@ -739,7 +739,7 @@ const Portfolio = () => {
               </div>
             </Reveal>
 
-            <Reveal className="currently-services" delay={240}>
+            <Reveal className="currently-strava" delay={240}>
               <article className="current-service-card">
                 <div className="flex items-center justify-between">
                   <p className="font-ui text-xs font-medium tracking-[0.12em] text-[#C4A484] uppercase">Strava</p>
@@ -817,7 +817,9 @@ const Portfolio = () => {
                   </div>
                 )}
               </article>
+            </Reveal>
 
+            <Reveal className="currently-spotify" delay={280}>
               <article className="current-service-card">
                 <div className="flex items-center justify-between">
                   <p className="font-ui text-xs font-medium tracking-[0.12em] text-[#C4A484] uppercase">Spotify</p>
