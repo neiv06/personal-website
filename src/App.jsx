@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, ChevronDown, ChevronLeft, ChevronRight, MapPin, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Globe, MapPin, FileText } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
@@ -232,35 +232,61 @@ const Portfolio = () => {
       company: "Pairwise Technologies",
       location: "Los Angeles, CA",
       period: "June 2026 – Present",
-      description: "Built Django backend services and a semantic-and-lexical deduplication pipeline, and engineered FastMCP and OAuth CIMD integrations for Claude Connector workflows."
+      companyType: "SaaS Startup",
+      website: "https://pairwise.ai/",
+      linkedin: "https://www.linkedin.com/company/pairwiseai/",
+      highlights: [
+        "Analyzed usage across 100+ backend and frontend services with Django ORM queries to inform engineering decisions.",
+        "Built a Qdrant deduplication pipeline using cosine and trigram similarity with MMR-based diversity selection.",
+        "Engineered an OAuth-secured FastMCP server that exposes DRF views and serializers as tools for AI agents."
+      ]
     },
     {
       title: "Undergraduate Student Researcher",
       company: "UCLA Computational Machine Learning Laboratory",
       location: "Los Angeles, CA",
       period: "May 2026 – Present",
-      description: "Researching audio-LLM defense robustness against harmful and adversarial queries by developing PGD-optimized perturbations and an attack-aware defense foundation."
+      highlights: [
+        "Researching audio-LLM defense robustness against harmful queries and adversarial attacks.",
+        "Engineering PGD-optimized audio perturbations that bypass Qwen2-Audio safety refusals.",
+        "Extending gradient-direction attack analysis into a foundation for attack-aware defenses."
+      ]
     },
     {
       title: "Software Engineering Intern",
       company: "ThinkScan Technologies",
       location: "Pleasanton, CA",
       period: "Apr. 2025 – Sep. 2025",
-      description: "Developed an object-detection and scene-reasoning AI agent for defense threat detection, pairing FAISS and CLIP retrieval with image preprocessing for reliable field inference."
+      companyType: "AI Startup",
+      website: "https://www.thinkscan.ai/",
+      linkedin: "https://www.linkedin.com/company/thinkscan/posts/?feedView=all",
+      highlights: [
+        "Developed an object-detection and scene-reasoning AI agent for defense threat detection.",
+        "Built text-to-image retrieval with a FAISS ANN index of CLIP embeddings for efficient imagery search.",
+        "Improved noisy field imagery with Laplacian sharpening and edge-preserving bilateral denoising before inference."
+      ]
     },
     {
       title: "Computer Vision Student Researcher",
       company: "Argonne National Laboratory",
       location: "Lemont, IL",
       period: "June 2024 – Aug. 2024",
-      description: "Developed TensorFlow, PyTorch, and CLIP computer-vision pipelines for wildfire and drought monitoring, including a zero-shot model that achieved 93% mAP."
+      highlights: [
+        "Deployed TensorFlow and PyTorch CNN pipelines for wildfire response and drought monitoring.",
+        "Built a CLIP-based zero-shot classifier that achieved 93% mAP on wildfire and drought imagery.",
+        "Fine-tuned OpenCLIP ViT-B/32 multimodal models on imagery datasets to improve accuracy."
+      ]
     },
     {
       title: "Geographic Information Systems Intern",
       company: "Northern Change Research Laboratory, Brown University",
       location: "Providence, RI",
       period: "Apr. 2023 – Aug. 2024",
-      description: "Applied ResNet-50 transfer learning to Sentinel-2 imagery and built geospatial data pipelines that produced 15K+ labeled samples for glacial ice-loss and sea-level-rise research."
+      highlights: [
+        "Applied ResNet-50 transfer learning with TensorFlow and PyTorch to Sentinel-2 multispectral imagery.",
+        "Built GDAL and Rasterio data pipelines with QGIS digitization to create 15K+ labeled training samples.",
+        "Supported glacial ice-loss and sea-level-rise projections achieved via geodetic mass-balance calculations."
+      ]
     }
   ];
 
@@ -557,11 +583,34 @@ const Portfolio = () => {
               >
                 <Reveal className="experience-timeline-reveal" delay={idx * 120}>
                   <header className="experience-timeline-heading">
-                    <h3 className="text-2xl font-bold accent-text mb-2">{exp.company}</h3>
+                    <h3 className="text-3xl font-bold accent-text mb-2">{exp.company}</h3>
                     <div className="text-[#FFF2D7]/70">
-                      <span className="font-semibold">{exp.title}</span>
+                      {exp.companyType && (
+                        <div className="mb-1 flex flex-wrap items-center justify-end gap-2 text-sm italic text-[#C4A484]/80">
+                          <span>{exp.companyType}</span>
+                          <a
+                            href={exp.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Visit ${exp.company} website`}
+                            className="transition-colors hover:text-[#C4A484]"
+                          >
+                            <Globe className="h-3.5 w-3.5" />
+                          </a>
+                          <a
+                            href={exp.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Visit ${exp.company} on LinkedIn`}
+                            className="transition-colors hover:text-[#C4A484]"
+                          >
+                            <Linkedin className="h-3.5 w-3.5" />
+                          </a>
+                        </div>
+                      )}
+                      <span className="text-lg font-semibold">{exp.title}</span>
                       <div className="experience-timeline-meta flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
-                        <span>{exp.location}</span>
+                        <span className="text-sm">{exp.location}</span>
                         <span className="text-[#C4A484]/40" aria-hidden="true">·</span>
                         <span className="text-sm tracking-wide text-[#C4A484]/80">
                         {exp.period}
@@ -571,7 +620,11 @@ const Portfolio = () => {
                   </header>
 
                   <article className="experience-timeline-card p-6 md:p-7">
-                    <p className="text-[#FFF2D7]/70 leading-relaxed">{exp.description}</p>
+                    <div className="space-y-3 text-sm text-[#FFF2D7]/70 leading-relaxed">
+                      {exp.highlights.map((highlight) => (
+                        <p key={highlight}>{highlight}</p>
+                      ))}
+                    </div>
                   </article>
                 </Reveal>
               </li>
