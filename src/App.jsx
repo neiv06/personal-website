@@ -434,10 +434,10 @@ const Portfolio = () => {
   };
 
   const iconBtn =
-    "p-3 text-[#FFF2D7] border border-[#C4A484]/45 rounded-full hover:bg-[#C4A484] hover:text-[#1f1e1d] hover:border-[#C4A484] transition-all duration-300 hover:scale-105";
+    "p-3 text-[#FFF2D7] border border-[#C4A484]/45 rounded-full hover:bg-[#C4A484] hover:text-[#121212] hover:border-[#C4A484] transition-all duration-300 hover:scale-105";
 
   return (
-    <div className="min-h-screen bg-[#1f1e1d] text-[#FFF2D7] overflow-x-hidden page-noise">
+    <div className="min-h-screen bg-[#121212] text-[#FFF2D7] overflow-x-hidden page-noise">
       {/* Scroll timeline */}
       <aside
         className={`fixed right-6 top-1/2 z-40 hidden md:flex sidebar-panel ${
