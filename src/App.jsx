@@ -267,17 +267,6 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "Computer Vision Student Researcher",
-      company: "Argonne National Laboratory",
-      location: "Lemont, IL",
-      period: "June 2024 – Aug. 2024",
-      highlights: [
-        "Deployed TensorFlow and PyTorch CNN pipelines for wildfire response and drought monitoring.",
-        "Built a CLIP-based zero-shot classifier that achieved 93% mAP on wildfire and drought imagery.",
-        "Fine-tuned OpenCLIP ViT-B/32 multimodal models on imagery datasets to improve accuracy."
-      ]
-    },
-    {
       title: "Geographic Information Systems Intern",
       company: "Northern Change Research Laboratory, Brown University",
       location: "Providence, RI",
@@ -286,6 +275,17 @@ const Portfolio = () => {
         "Applied ResNet-50 transfer learning with TensorFlow and PyTorch to Sentinel-2 multispectral imagery.",
         "Built GDAL and Rasterio data pipelines with QGIS digitization to create 15K+ labeled training samples.",
         "Supported glacial ice-loss and sea-level-rise projections achieved via geodetic mass-balance calculations."
+      ]
+    },
+    {
+      title: "Computer Vision Student Researcher",
+      company: "Argonne National Laboratory",
+      location: "Lemont, IL",
+      period: "Feb. 2024 – June 2024",
+      highlights: [
+        "Deployed TensorFlow and PyTorch CNN pipelines for wildfire response and drought monitoring.",
+        "Built a CLIP-based zero-shot classifier that achieved 93% mAP on wildfire and drought imagery.",
+        "Fine-tuned OpenCLIP ViT-B/32 multimodal models on imagery datasets to improve accuracy."
       ]
     }
   ];
