@@ -243,13 +243,13 @@ const Portfolio = () => {
     },
     {
       title: "Undergraduate Student Researcher",
-      company: "UCLA Computational Machine Learning Laboratory",
+      company: "UCLA Computational Machine Learning Lab",
       location: "Los Angeles, CA",
       period: "May 2026 – Present",
       highlights: [
-        "Researching audio-LLM defense robustness against harmful queries and adversarial attacks.",
-        "Engineering PGD-optimized audio perturbations that bypass Qwen2-Audio safety refusals.",
-        "Extending gradient-direction attack analysis into a foundation for attack-aware defenses."
+        "Researching current audio-LLM defense-system robustness against harmful queries and adversarial attacks.",
+        "Engineering PGD-optimized adversarial audio perturbations that bypass Qwen2-Audio safety refusals.",
+        "Extending gradient-direction analysis of the attack method into a foundation for a new attack-aware defense."
       ]
     },
     {
