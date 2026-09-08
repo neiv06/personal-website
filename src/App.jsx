@@ -7,7 +7,7 @@ import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
 
-const resume = `${import.meta.env.BASE_URL}not-found`;
+const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
 const stravaProfileUrl = 'https://www.strava.com/athletes/2047652902';
 const spotifyProfileUrl = 'https://open.spotify.com/user/uhvto2o8rz5yv89376o7y1noi';
 
@@ -249,7 +249,7 @@ const Portfolio = () => {
       highlights: [
         "Researching current audio-LLM defense-system robustness against harmful queries and adversarial attacks.",
         "Engineering PGD-optimized adversarial audio perturbations that bypass Qwen2-Audio safety refusals.",
-        "Extending gradient-direction analysis of the attack method into a foundation for a new attack-aware defense."
+        "Ported AdvWave waveform-suffix attack to Kimi-Audio-7B, jailbreaking it at a 78% ASR under Llama-3.1 judge."
       ]
     },
     {
