@@ -7,7 +7,7 @@ import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
 
-const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
+const resume = `${import.meta.env.BASE_URL}not-found`;
 const stravaProfileUrl = 'https://www.strava.com/athletes/2047652902';
 const spotifyProfileUrl = 'https://open.spotify.com/user/uhvto2o8rz5yv89376o7y1noi';
 
