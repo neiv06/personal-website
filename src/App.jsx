@@ -7,7 +7,7 @@ import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
 
-const resume = `${import.meta.env.BASE_URL}not-found`;
+const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
 const stravaProfileUrl = 'https://www.strava.com/athletes/2047652902';
 const spotifyProfileUrl = 'https://open.spotify.com/user/uhvto2o8rz5yv89376o7y1noi';
 
@@ -228,7 +228,7 @@ const Portfolio = () => {
 
   const experiences = [
     {
-      title: "Software Engineering Intern",
+      title: "Software Engineer Intern",
       company: "Pairwise Technologies",
       location: "Los Angeles, CA",
       period: "June 2026 – Present",
@@ -236,9 +236,9 @@ const Portfolio = () => {
       website: "https://pairwise.ai/",
       linkedin: "https://www.linkedin.com/company/pairwiseai/",
       highlights: [
-        "Analyzed usage across 100+ backend and frontend services with Django ORM queries to inform engineering decisions.",
-        "Built a Qdrant deduplication pipeline using cosine and trigram similarity with MMR-based diversity selection.",
-        "Engineered an OAuth-secured FastMCP server that exposes DRF views and serializers as tools for AI agents."
+        "Engineered an OAuth-secured FastMCP server that exposes DRF views and serializers as tools for AI agents.",
+        "Built a Qdrant vector-database deduplication pipeline using cosine and trigram similarity with MMR-based diversity selection.",
+        "Analyzed usage across 100+ backend and frontend services with Django ORM and Grafana to guide engineering decisions."
       ]
     },
     {
@@ -253,7 +253,7 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "Software Engineering Intern",
+      title: "Software Engineer Intern",
       company: "ThinkScan Technologies",
       location: "Pleasanton, CA",
       period: "Apr. 2025 – Sep. 2025",
@@ -335,8 +335,8 @@ const Portfolio = () => {
       items: ["PyTorch", "TensorFlow", "LangChain", "React", "React Native", "Node.js", "Express.js", "Gin", "Django", "Celery"] 
     },
     { 
-      category: "Dev. Tools", 
-      items: ["Git", "Github", "Docker", "Vercel", "REST APIs", "WebSockets", "MongoDB", "PostgreSQL", "OpenGL", "FastMCP"] 
+      category: "Tools & Concepts", 
+      items: ["Git", "GitHub", "Docker", "Kubernetes", "MongoDB", "PostgreSQL", "Grafana", "Linux", "Vercel", "CI/CD"] 
     },
     { 
       category: "Libraries", 
@@ -552,7 +552,7 @@ const Portfolio = () => {
                 </p>
                 <br />
                 <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
-                  Most recently, I worked as a Software Engineering Intern at Pairwise Technologies where I developed and deployed frontend and backend services for their AI-powered agentic recruiting platform.
+                  Most recently, I worked as a Software Engineer Intern at Pairwise Technologies where I developed and deployed frontend and backend services for their AI-powered agentic recruiting platform.
                 </p>
                 <br />
                 <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
