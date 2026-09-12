@@ -231,7 +231,7 @@ const Portfolio = () => {
       title: "Software Engineer Intern",
       company: "Pairwise Technologies",
       location: "Los Angeles, CA",
-      period: "June 2026 – Present",
+      period: "June 2026 – Sep. 2026",
       companyType: "SaaS Startup",
       website: "https://pairwise.ai/",
       linkedin: "https://www.linkedin.com/company/pairwiseai/",
