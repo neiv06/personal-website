@@ -121,7 +121,7 @@
   position: relative;
   z-index: 1;
   width: calc(50% - 2rem);
-  padding-bottom: 3rem;
+  padding-bottom: 2.85rem;
 }
 
 .experience-timeline-item.is-left {
@@ -141,13 +141,13 @@
 }
 
 .experience-timeline-heading {
-  margin-bottom: 0.875rem;
+  margin-bottom: 0.831rem;
 }
 
 .experience-timeline-card {
   position: relative;
   width: fit-content;
-  max-width: 30rem;
+  max-width: 28.5rem;
   background: #2a211d;
   border-radius: 4px;
 }
@@ -417,7 +417,7 @@
 
   .experience-timeline-item {
     width: auto;
-    padding-bottom: 2rem;
+    padding-bottom: 1.9rem;
   }
 
   .experience-timeline-item.is-left,

@@ -583,10 +583,10 @@ const Portfolio = () => {
               >
                 <Reveal className="experience-timeline-reveal" delay={idx * 120}>
                   <header className="experience-timeline-heading">
-                    <h3 className="text-3xl font-bold accent-text mb-2">{exp.company}</h3>
+                    <h3 className="text-[1.781rem]/[2.138rem] font-bold accent-text mb-[0.475rem]">{exp.company}</h3>
                     <div className="text-[#FFF2D7]/70">
                       {exp.companyType && (
-                        <div className="mb-1 flex flex-wrap items-center justify-end gap-2 text-sm italic text-[#C4A484]/80">
+                        <div className="mb-[0.238rem] flex flex-wrap items-center justify-end gap-[0.475rem] text-[0.831rem]/[1.188rem] italic text-[#C4A484]/80">
                           <span>{exp.companyType}</span>
                           <a
                             href={exp.website}
@@ -595,7 +595,7 @@ const Portfolio = () => {
                             aria-label={`Visit ${exp.company} website`}
                             className="transition-colors hover:text-[#C4A484]"
                           >
-                            <Globe className="h-3.5 w-3.5" />
+                            <Globe className="h-[0.831rem] w-[0.831rem]" />
                           </a>
                           <a
                             href={exp.linkedin}
@@ -604,23 +604,23 @@ const Portfolio = () => {
                             aria-label={`Visit ${exp.company} on LinkedIn`}
                             className="transition-colors hover:text-[#C4A484]"
                           >
-                            <Linkedin className="h-3.5 w-3.5" />
+                            <Linkedin className="h-[0.831rem] w-[0.831rem]" />
                           </a>
                         </div>
                       )}
-                      <span className="text-lg font-semibold">{exp.title}</span>
-                      <div className="experience-timeline-meta flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
-                        <span className="text-sm">{exp.location}</span>
+                      <span className="text-[1.069rem]/[1.663rem] font-semibold">{exp.title}</span>
+                      <div className="experience-timeline-meta flex flex-wrap items-center gap-x-[0.713rem] gap-y-[0.238rem] mt-[0.238rem]">
+                        <span className="text-[0.831rem]/[1.188rem]">{exp.location}</span>
                         <span className="text-[#C4A484]/40" aria-hidden="true">·</span>
-                        <span className="text-sm tracking-wide text-[#C4A484]/80">
+                        <span className="text-[0.831rem]/[1.188rem] tracking-wide text-[#C4A484]/80">
                         {exp.period}
                         </span>
                       </div>
                     </div>
                   </header>
 
-                  <article className="experience-timeline-card p-6 md:p-7">
-                    <div className="space-y-3 text-sm text-[#FFF2D7]/70 leading-relaxed">
+                  <article className="experience-timeline-card p-[1.425rem] md:p-[1.663rem]">
+                    <div className="space-y-[0.713rem] text-[0.831rem] text-[#FFF2D7]/70 leading-relaxed">
                       {exp.highlights.map((highlight) => (
                         <p key={highlight}>{highlight}</p>
                       ))}
