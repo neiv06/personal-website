@@ -173,6 +173,12 @@
   align-items: start;
 }
 
+.currently-cooking,
+.currently-spotify,
+.currently-strava {
+  min-width: 0;
+}
+
 .currently-cooking {
   grid-column: 1;
   grid-row: 1;
@@ -220,6 +226,7 @@
 }
 
 .cooking-carousel-window {
+  min-width: 0;
   overflow: hidden;
   border-radius: 4px;
   transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
@@ -243,6 +250,9 @@
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
   flex: 0 0 100%;
+  /* Without this each of the 13 cards contributes its min-content width to the
+     flex track, blowing the whole Interests grid column out past the viewport. */
+  min-width: 0;
   align-self: flex-start;
 }
 
@@ -403,14 +413,14 @@
 }
 
 @media (max-width: 767px) {
+  /* ---- Portrait layout: everything collapses to one scrolling column ---- */
+
+  /* Experience timeline: rail moves to the left edge, cards go full width. */
   .experience-timeline {
     padding-left: 2.25rem;
   }
 
-  .experience-timeline::before {
-    left: 0.5rem;
-  }
-
+  .experience-timeline::before,
   .experience-timeline::after {
     left: 0.5rem;
   }
@@ -432,6 +442,7 @@
   }
 
   .experience-timeline-card {
+    width: auto;
     max-width: 100%;
   }
 
@@ -439,29 +450,62 @@
     justify-content: flex-start;
   }
 
+  /* A 28px company name eats three lines in a single narrow column. */
+  .experience-company {
+    font-size: 1.4rem;
+    line-height: 1.75rem;
+  }
+
+  /* Interests: cooking, Strava and Spotify stack in that order.
+     minmax(0, 1fr) — not 1fr — so the carousel track cannot force the
+     column wider than the viewport. */
   .currently-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
   }
 
   .currently-cooking,
-  .currently-spotify,
-  .currently-strava {
+  .currently-strava,
+  .currently-spotify {
     grid-column: 1;
     grid-row: auto;
   }
 
+  .currently-cooking { order: 1; }
+  .currently-strava { order: 2; }
+  .currently-spotify { order: 3; }
+
+  /* Label and arrows stay on one line — they fit, and stacking wastes height. */
   .currently-section-heading {
-    align-items: start;
-    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
   }
 
+  .cooking-carousel-button {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  /* Photo on top, caption underneath. */
   .cooking-carousel-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .cooking-card-image {
+    /* height:100% + aspect-ratio inside an auto-sized grid row is circular and
+       collapses in Safari; let the aspect ratio drive the height instead. */
+    height: auto;
     min-height: 0;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 3;
+  }
+
+  .cooking-card-copy {
+    padding: 0.85rem 0.95rem 1rem;
+  }
+
+  .strava-stats-grid {
+    gap: 0.6rem 0.9rem;
   }
 }
 

@@ -477,10 +477,10 @@ const Portfolio = () => {
       </aside>
       
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative">
+      <section id="home" className="min-h-[100svh] flex items-center justify-center relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <div className="text-center">
-              <h1 className="fade-in-up text-7xl md:text-9xl font-bold mb-4 text-[#FFF2D7] transition-all duration-300 cursor-pointer name-glow">
+              <h1 className="fade-in-up text-6xl sm:text-7xl md:text-9xl font-bold mb-4 text-[#FFF2D7] transition-all duration-300 cursor-pointer name-glow">
                 Neiv Gupta
               </h1>
               
@@ -522,40 +522,40 @@ const Portfolio = () => {
       </button>
       
       {/* Introduction Section */}
-      <section id="introduction" className="min-h-screen flex items-center py-20 relative">
+      <section id="introduction" className="md:min-h-screen flex items-center py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
               Introduction
             </h2>
           </Reveal>
           
-          <div className="flex flex-col md:flex-row items-start gap-8">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
             <Reveal className="flex-shrink-0">
               <div className="relative">
                 <img 
                   src={profileImage} 
                   alt="Neiv Gupta" 
-                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-transparent shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#C4A484]/50 transition-all duration-500"
+                  className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-transparent shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#C4A484]/50 transition-all duration-500"
                 />
               </div>
             </Reveal>
             
             <Reveal className="flex-1" delay={120}>
-              <div className="panel p-8">
+              <div className="panel p-0 md:p-8">
                 <p className="font-ui text-sm font-medium tracking-[0.12em] text-[#C4A484] mb-5">
                   B.S. Computer Science · UCLA · Class of 2028
                 </p>
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-base md:text-lg">
                   I am a third-year computer science student at UCLA, passionate about building practical applications 
                   that solve real-world problems.
                 </p>
                 <br />
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-base md:text-lg">
                   Most recently, I worked as a Software Engineer Intern at Pairwise Technologies where I developed and deployed frontend and backend services for their AI-powered agentic recruiting platform.
                 </p>
                 <br />
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-lg">
+                <p className="text-[#FFF2D7]/85 leading-relaxed text-base md:text-lg">
                   I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA.
                   When I'm not coding, you can find me cooking, running, and weightlifting.
                   I'm always excited to collaborate on projects that create meaningful impacts.
@@ -567,10 +567,10 @@ const Portfolio = () => {
       </section>
       
       {/* Experiences Section */}
-      <section id="experiences" className="min-h-screen py-20 relative">
+      <section id="experiences" className="md:min-h-screen py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
               Experiences
             </h2>
           </Reveal>
@@ -583,10 +583,10 @@ const Portfolio = () => {
               >
                 <Reveal className="experience-timeline-reveal" delay={idx * 120}>
                   <header className="experience-timeline-heading">
-                    <h3 className="text-[1.781rem]/[2.138rem] font-bold accent-text mb-[0.475rem]">{exp.company}</h3>
+                    <h3 className="experience-company text-[1.781rem]/[2.138rem] font-bold accent-text mb-[0.475rem]">{exp.company}</h3>
                     <div className="text-[#FFF2D7]/70">
                       {exp.companyType && (
-                        <div className="mb-[0.238rem] flex flex-wrap items-center justify-end gap-[0.475rem] text-[0.831rem]/[1.188rem] italic text-[#C4A484]/80">
+                        <div className="mb-[0.238rem] flex flex-wrap items-center justify-start md:justify-end gap-[0.475rem] text-[0.831rem]/[1.188rem] italic text-[#C4A484]/80">
                           <span>{exp.companyType}</span>
                           <a
                             href={exp.website}
@@ -619,7 +619,7 @@ const Portfolio = () => {
                     </div>
                   </header>
 
-                  <article className="experience-timeline-card p-[1.425rem] md:p-[1.663rem]">
+                  <article className="experience-timeline-card p-4 md:p-[1.663rem]">
                     <div className="space-y-[0.713rem] text-[0.831rem] text-[#FFF2D7]/70 leading-relaxed">
                       {exp.highlights.map((highlight) => (
                         <p key={highlight}>{highlight}</p>
@@ -634,10 +634,10 @@ const Portfolio = () => {
       </section>
       
       {/* Projects Section */}
-      <section id="projects" className="min-h-screen py-20 relative">
+      <section id="projects" className="md:min-h-screen py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
               Projects
             </h2>
           </Reveal>
@@ -693,10 +693,10 @@ const Portfolio = () => {
       </section>
       
       {/* Skills Section */}
-      <section id="skills" className="min-h-screen py-20 relative">
+      <section id="skills" className="md:min-h-screen py-14 md:py-20 relative">
         <div className="max-w-4xl mx-auto px-6 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
               Technical Skills
             </h2>
           </Reveal>
@@ -721,10 +721,10 @@ const Portfolio = () => {
       </section>
       
       {/* Interests Section */}
-      <section id="interests" className="py-8 relative">
+      <section id="interests" className="py-14 md:py-8 relative">
         <div className="max-w-6xl mx-auto px-6 md:pr-24 z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-3">Interests</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">Interests</h2>
           </Reveal>
 
           <Reveal delay={100}>
@@ -952,10 +952,10 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-center py-20 relative">
+      <section id="contact" className="md:min-h-screen flex items-center py-16 md:py-20 relative">
         <div className="max-w-2xl mx-auto px-6 text-center z-10">
           <Reveal asHeading>
-            <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">Let's Connect</h2>
           </Reveal>
 
           <Reveal delay={100}>
