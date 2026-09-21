@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Globe, MapPin, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Globe, MapPin } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
@@ -7,7 +7,6 @@ import yumImage from './images/YUM.png';
 import stairmastersImage from './images/Stairmasters.png';
 import './App.css';
 
-const resume = `${import.meta.env.BASE_URL}Neiv_Gupta_Resume.pdf`;
 const stravaProfileUrl = 'https://www.strava.com/athletes/2047652902';
 const spotifyProfileUrl = 'https://open.spotify.com/user/uhvto2o8rz5yv89376o7y1noi';
 
@@ -235,22 +234,16 @@ const Portfolio = () => {
       companyType: "SaaS Startup",
       website: "https://pairwise.ai/",
       linkedin: "https://www.linkedin.com/company/pairwiseai/",
-      highlights: [
-        "Engineered an OAuth-secured FastMCP server that exposes DRF views and serializers as tools for AI agents.",
-        "Built a Qdrant vector-database deduplication pipeline using cosine and trigram similarity with MMR-based diversity selection.",
-        "Analyzed usage across 100+ backend and frontend services with Django ORM and Grafana to guide engineering decisions."
-      ]
+      summary:
+        "Built backend infrastructure for an agentic recruiting platform, including an OAuth-secured MCP server that exposes Django APIs as AI-agent tools and a Qdrant vector-database deduplication pipeline."
     },
     {
       title: "Undergraduate Student Researcher",
       company: "UCLA Computational Machine Learning Lab",
       location: "Los Angeles, CA",
       period: "May 2026 – Present",
-      highlights: [
-        "Researching current audio-LLM defense-system robustness against harmful queries and adversarial attacks.",
-        "Engineering PGD-optimized adversarial audio perturbations that bypass Qwen2-Audio safety refusals.",
-        "Ported AdvWave waveform-suffix attack to Kimi-Audio-7B, jailbreaking it at a 78% ASR under Llama-3.1 judge."
-      ]
+      summary:
+        "Researching how well audio-LLM safety defenses hold up under adversarial pressure, building PGD-optimized attacks that jailbreak Qwen3.5-Omni-7B and Kimi-Audio-7B at up to a 78% success rate."
     },
     {
       title: "Software Engineer Intern",
@@ -260,33 +253,24 @@ const Portfolio = () => {
       companyType: "AI Startup",
       website: "https://www.thinkscan.ai/",
       linkedin: "https://www.linkedin.com/company/thinkscan/posts/?feedView=all",
-      highlights: [
-        "Developed an object-detection and scene-reasoning AI agent for defense threat detection.",
-        "Built text-to-image retrieval with a FAISS ANN index of CLIP embeddings for efficient imagery search.",
-        "Improved noisy field imagery with Laplacian sharpening and edge-preserving bilateral denoising before inference."
-      ]
+      summary:
+        "Built a computer-vision agent for defense threat detection, combining object detection and scene reasoning with CLIP-based text-to-image retrieval over a FAISS index."
     },
     {
       title: "Geographic Information Systems Intern",
       company: "Northern Change Research Laboratory, Brown University",
       location: "Providence, RI",
       period: "Apr. 2023 – Aug. 2024",
-      highlights: [
-        "Applied ResNet-50 transfer learning with TensorFlow and PyTorch to Sentinel-2 multispectral imagery.",
-        "Built GDAL and Rasterio data pipelines with QGIS digitization to create 15K+ labeled training samples.",
-        "Supported glacial ice-loss and sea-level-rise projections achieved via geodetic mass-balance calculations."
-      ]
+      summary:
+        "Applied ResNet-50 transfer learning to Sentinel-2 multispectral imagery and built GDAL pipelines producing 15K+ labeled samples for glacial ice-loss and sea-level-rise projections."
     },
     {
       title: "Computer Vision Student Researcher",
       company: "Argonne National Laboratory",
       location: "Lemont, IL",
       period: "Feb. 2024 – June 2024",
-      highlights: [
-        "Deployed TensorFlow and PyTorch CNN pipelines for wildfire response and drought monitoring.",
-        "Built a CLIP-based zero-shot classifier that achieved 93% mAP on wildfire and drought imagery.",
-        "Fine-tuned OpenCLIP ViT-B/32 multimodal models on imagery datasets to improve accuracy."
-      ]
+      summary:
+        "Built TensorFlow and PyTorch pipelines for wildfire and drought monitoring, including a CLIP-based zero-shot classifier that reached 93% mAP."
     }
   ];
 
@@ -494,15 +478,6 @@ const Portfolio = () => {
                 <a href="mailto:neiv06@g.ucla.edu" className={iconBtn}>
                   <Mail className="w-6 h-6" />
                 </a>
-                <a
-                  href={resume}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Resume"
-                  className={iconBtn}
-                >
-                  <FileText className="w-6 h-6" />
-                </a>
               </div>
           </div>
         </div>
@@ -524,8 +499,8 @@ const Portfolio = () => {
       {/* Introduction Section */}
       <section id="introduction" className="md:min-h-screen flex items-center py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
-          <Reveal asHeading>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
+          <Reveal asHeading className="section-title">
+            <h2 className="text-[2.125rem] md:text-[2.625rem] font-bold mb-8 md:mb-12">
               Introduction
             </h2>
           </Reveal>
@@ -547,18 +522,18 @@ const Portfolio = () => {
                   B.S. Computer Science · UCLA · Class of 2028
                 </p>
                 <p className="text-[#FFF2D7]/85 leading-relaxed text-base md:text-lg">
-                  I am a third-year computer science student at UCLA, passionate about building practical applications 
-                  that solve real-world problems.
+                  I am a third-year computer science student at UCLA. Currently, I am a researcher at the UCLA Computational Machine 
+                  Learning Lab under Prof. Cho Jui-Hsieh, where I am researching the robustness of large audio language models against adversarial attacks. 
+                  I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. This past summer I was a Software Engineer
+                  Intern at Pairwise Technologies, where I developed and deployed frontend and backend services for their AI-powered agentic 
+                  recruiting platform. My primary interests are in machine learning and software development, and I am always working on new 
+                  projects in these areas. When I'm not coding, you can find me cooking, running, weightlifting, and playing any sport!
                 </p>
                 <br />
                 <p className="text-[#FFF2D7]/85 leading-relaxed text-base md:text-lg">
-                  Most recently, I worked as a Software Engineer Intern at Pairwise Technologies where I developed and deployed frontend and backend services for their AI-powered agentic recruiting platform.
-                </p>
-                <br />
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-base md:text-lg">
-                  I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA.
-                  When I'm not coding, you can find me cooking, running, and weightlifting.
-                  I'm always excited to collaborate on projects that create meaningful impacts.
+                  
+                  
+                 
                 </p>
               </div>
             </Reveal>
@@ -569,24 +544,21 @@ const Portfolio = () => {
       {/* Experiences Section */}
       <section id="experiences" className="md:min-h-screen py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
-          <Reveal asHeading>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
+          <Reveal asHeading className="section-title">
+            <h2 className="text-[2.125rem] md:text-[2.625rem] font-bold mb-8 md:mb-12">
               Experiences
             </h2>
           </Reveal>
           
           <ol ref={experienceTimelineRef} className="experience-timeline">
             {experiences.map((exp, idx) => (
-              <li
-                key={exp.company}
-                className={`experience-timeline-item ${idx % 2 === 0 ? 'is-left' : 'is-right'}`}
-              >
+              <li key={exp.company} className="experience-timeline-item">
                 <Reveal className="experience-timeline-reveal" delay={idx * 120}>
                   <header className="experience-timeline-heading">
                     <h3 className="experience-company text-[1.781rem]/[2.138rem] font-bold accent-text mb-[0.475rem]">{exp.company}</h3>
                     <div className="text-[#FFF2D7]/70">
                       {exp.companyType && (
-                        <div className="mb-[0.238rem] flex flex-wrap items-center justify-start md:justify-end gap-[0.475rem] text-[0.831rem]/[1.188rem] italic text-[#C4A484]/80">
+                        <div className="mb-[0.238rem] flex flex-wrap items-center justify-start gap-[0.475rem] text-[0.831rem]/[1.188rem] italic text-[#C4A484]/80">
                           <span>{exp.companyType}</span>
                           <a
                             href={exp.website}
@@ -620,11 +592,9 @@ const Portfolio = () => {
                   </header>
 
                   <article className="experience-timeline-card p-4 md:p-[1.663rem]">
-                    <div className="space-y-[0.713rem] text-[0.831rem] text-[#FFF2D7]/70 leading-relaxed">
-                      {exp.highlights.map((highlight) => (
-                        <p key={highlight}>{highlight}</p>
-                      ))}
-                    </div>
+                    <p className="text-[0.831rem] text-[#FFF2D7]/70 leading-relaxed">
+                      {exp.summary}
+                    </p>
                   </article>
                 </Reveal>
               </li>
@@ -636,8 +606,8 @@ const Portfolio = () => {
       {/* Projects Section */}
       <section id="projects" className="md:min-h-screen py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
-          <Reveal asHeading>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
+          <Reveal asHeading className="section-title">
+            <h2 className="text-[2.125rem] md:text-[2.625rem] font-bold mb-8 md:mb-12">
               Projects
             </h2>
           </Reveal>
@@ -694,9 +664,9 @@ const Portfolio = () => {
       
       {/* Skills Section */}
       <section id="skills" className="md:min-h-screen py-14 md:py-20 relative">
-        <div className="max-w-4xl mx-auto px-6 z-10">
-          <Reveal asHeading>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">
+        <div className="max-w-6xl mx-auto px-6 z-10">
+          <Reveal asHeading className="section-title">
+            <h2 className="text-[2.125rem] md:text-[2.625rem] font-bold mb-8 md:mb-12">
               Technical Skills
             </h2>
           </Reveal>
@@ -722,18 +692,18 @@ const Portfolio = () => {
       
       {/* Interests Section */}
       <section id="interests" className="py-14 md:py-8 relative">
-        <div className="max-w-6xl mx-auto px-6 md:pr-24 z-10">
-          <Reveal asHeading>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">Interests</h2>
+        <div className="max-w-6xl mx-auto px-6 z-10">
+          <Reveal asHeading className="section-title">
+            <h2 className="text-[2.125rem] md:text-[2.625rem] font-bold mb-3">Interests</h2>
           </Reveal>
 
-          <Reveal delay={100}>
+          <Reveal className="section-title" delay={100}>
             <p className="font-ui text-sm font-medium tracking-[0.12em] text-[#C4A484] uppercase mb-4">
               A bit more about me
             </p>
           </Reveal>
 
-          <div className="currently-layout">
+          <div className="currently-layout md:pr-24">
             <Reveal className="currently-cooking" delay={160}>
               <div className="currently-section-heading">
                 <div>
@@ -955,7 +925,7 @@ const Portfolio = () => {
       <section id="contact" className="md:min-h-screen flex items-center py-16 md:py-20 relative">
         <div className="max-w-2xl mx-auto px-6 text-center z-10">
           <Reveal asHeading>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Let's Connect</h2>
+            <h2 className="text-[2.125rem] md:text-[2.625rem] font-bold mb-8">Let's Connect</h2>
           </Reveal>
 
           <Reveal delay={100}>

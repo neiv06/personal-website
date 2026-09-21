@@ -27,7 +27,9 @@ export default defineConfig([
     },
   },
   {
-    files: ['api/**/*.js'],
+    // Server-side code: Vercel functions, routing middleware, shared auth
+    // helpers and the Vite config all run in Node, not the browser.
+    files: ['api/**/*.js', 'lib/**/*.js', 'middleware.js', 'vite.config.js'],
     languageOptions: {
       globals: globals.node,
     },

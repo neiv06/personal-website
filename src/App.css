@@ -81,11 +81,36 @@
   transform: translateY(0);
 }
 
+/* Section titles share the timeline's centred 40rem block, and the 0.5rem
+   inset puts their content box on the same vertical axis as the rail. */
+.section-title {
+  max-width: 40rem;
+  margin-inline: auto;
+  padding-left: 0.5rem;
+}
+
+/* Centre the title text on the rail rather than starting it there. Shrinking
+   to the text width and pulling back half of it puts the midpoint on the axis;
+   the transform is visual only, so following content does not move.
+   Only above this width is there room for the longest title ("Technical
+   Skills", 337px) to straddle the rail with a comfortable gap to the page
+   edge; below it the titles simply start at the rail instead. */
+@media (min-width: 1100px) {
+  .section-title > * {
+    display: inline-block;
+    transform: translateX(-50%);
+  }
+}
+
 .experience-timeline {
   position: relative;
-  max-width: 72rem;
+  /* Narrower than the section container and auto-centred, so the rail and the
+     cards sit around the middle of the page rather than hugging the far left.
+     Below this width (phones) it simply fills the column. */
+  max-width: 40rem;
   margin: 0 auto;
-  padding: 0;
+  /* Rail sits near the left edge; every entry hangs off its right side. */
+  padding: 0 0 0 3rem;
 }
 
 .experience-timeline::before {
@@ -93,7 +118,7 @@
   position: absolute;
   top: 0.75rem;
   bottom: 0.75rem;
-  left: 50%;
+  left: 0.5rem;
   z-index: 0;
   width: 1px;
   background: linear-gradient(
@@ -109,7 +134,7 @@
   content: "";
   position: absolute;
   top: 0.75rem;
-  left: 50%;
+  left: 0.5rem;
   z-index: 0;
   width: 1px;
   height: var(--timeline-fill-height, 0);
@@ -120,16 +145,8 @@
 .experience-timeline-item {
   position: relative;
   z-index: 1;
-  width: calc(50% - 2rem);
+  width: auto;
   padding-bottom: 2.85rem;
-}
-
-.experience-timeline-item.is-left {
-  margin-right: calc(50% + 2rem);
-}
-
-.experience-timeline-item.is-right {
-  margin-left: calc(50% + 2rem);
 }
 
 .experience-timeline-item:last-child {
@@ -146,23 +163,10 @@
 
 .experience-timeline-card {
   position: relative;
-  width: fit-content;
-  max-width: 28.5rem;
+  width: 100%;
+  max-width: 34rem;
   background: #2a211d;
   border-radius: 4px;
-}
-
-.experience-timeline-item.is-left .experience-timeline-heading,
-.experience-timeline-item.is-left .experience-timeline-card {
-  text-align: right;
-}
-
-.experience-timeline-item.is-left .experience-timeline-card {
-  margin-left: auto;
-}
-
-.experience-timeline-item.is-left .experience-timeline-meta {
-  justify-content: flex-end;
 }
 
 .currently-layout {
@@ -415,39 +419,17 @@
 @media (max-width: 767px) {
   /* ---- Portrait layout: everything collapses to one scrolling column ---- */
 
-  /* Experience timeline: rail moves to the left edge, cards go full width. */
+  /* Tighter rail inset and spacing on a narrow column. */
   .experience-timeline {
     padding-left: 2.25rem;
   }
 
-  .experience-timeline::before,
-  .experience-timeline::after {
-    left: 0.5rem;
-  }
-
   .experience-timeline-item {
-    width: auto;
     padding-bottom: 1.9rem;
   }
 
-  .experience-timeline-item.is-left,
-  .experience-timeline-item.is-right {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .experience-timeline-item.is-left .experience-timeline-heading,
-  .experience-timeline-item.is-left .experience-timeline-card {
-    text-align: left;
-  }
-
   .experience-timeline-card {
-    width: auto;
     max-width: 100%;
-  }
-
-  .experience-timeline-item.is-left .experience-timeline-meta {
-    justify-content: flex-start;
   }
 
   /* A 28px company name eats three lines in a single narrow column. */

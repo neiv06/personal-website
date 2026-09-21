@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
 import './index.css'
 import App from './App.jsx'
 import NotFound from './NotFound.jsx'
@@ -11,5 +12,6 @@ const Page = currentPath === basePath ? App : NotFound
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Page />
+    <Analytics />
   </StrictMode>,
 )
