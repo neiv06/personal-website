@@ -243,7 +243,7 @@ const Portfolio = () => {
       location: "Los Angeles, CA",
       period: "May 2026 – Present",
       summary:
-        "Researching how well audio-LLM safety defenses hold up under adversarial pressure, building PGD-optimized attacks that jailbreak Qwen3.5-Omni-7B and Kimi-Audio-7B at up to a 78% success rate."
+        "Researching robustness of audio-LLM safety defenses under adversarial attacks, porting and adapting existing attacks that jailbreak Qwen and Kimi at 78% attack success rate."
     },
     {
       title: "Software Engineer Intern",
