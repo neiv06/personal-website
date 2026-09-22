@@ -288,6 +288,7 @@ const Portfolio = () => {
       description: "Full-stack UCLA-exclusive student marketplace with real-time peer-to-peer transactions and messaging. Architected backend using Go with PostgreSQL database, JWT authentication, and email verification. Deployed production app on Railway and Vercel with custom domain configuration and CI/CD pipeline.",
       tags: ["Go", "React", "PostgreSQL", "WebSockets", "Docker", "Railway", "Vercel"],
       image: bruinMarketImage,
+      site: "https://www.bruinmarket.com/",
       github: "https://github.com/neiv06/BruinMarket",
       demo: "https://www.figma.com/proto/y54NXFdnuFkzPJTdHdHDyb/BruinMarket-Slide-Demo?node-id=27-2&p=f&t=QkAnH0jYKLx1KVzg-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1"
     },
@@ -635,7 +636,19 @@ const Portfolio = () => {
                     ))}
                   </div>
                   
-                  <div className="flex gap-2 mt-auto">
+                  <div className="flex flex-col gap-2 mt-auto">
+                    {project.site && (
+                      <a
+                        href={project.site}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-slim w-full"
+                      >
+                        <Globe className="w-4 h-4" />
+                        <span>Live site</span>
+                      </a>
+                    )}
+                    <div className="flex gap-2">
                     <a 
                       href={project.github}
                       target="_blank"
@@ -654,6 +667,7 @@ const Portfolio = () => {
                       <ExternalLink className="w-4 h-4" />
                       <span>Demo</span>
                     </a>
+                    </div>
                   </div>
                 </div>
               </Reveal>
