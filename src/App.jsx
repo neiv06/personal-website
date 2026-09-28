@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Globe, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Globe, MapPin, Sun, Moon } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
@@ -72,7 +72,7 @@ const RouteMap = ({ points }) => {
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="route-map" aria-label="Route map outline" role="img">
-      <path d={path} fill="none" stroke="#C4A484" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={path} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 };
@@ -99,6 +99,9 @@ const Soundwave = ({ active }) => (
 );
 
 const Portfolio = () => {
+  const [theme, setTheme] = useState(
+    () => document.documentElement.dataset.theme || 'dark'
+  );
   const [activeSection, setActiveSection] = useState('home');
   const [showScrollHint, setShowScrollHint] = useState(true);
   const [showTimeline, setShowTimeline] = useState(false);
@@ -109,6 +112,15 @@ const Portfolio = () => {
   const [spotify, setSpotify] = useState({ status: 'loading' });
   const idleTimerRef = useRef(null);
   const experienceTimelineRef = useRef(null);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // private mode / blocked storage: the theme still applies for this visit
+    }
+  }, [theme]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -419,10 +431,20 @@ const Portfolio = () => {
   };
 
   const iconBtn =
-    "p-3 text-[#FFF2D7] border border-[#C4A484]/45 rounded-full hover:bg-[#C4A484] hover:text-[#121212] hover:border-[#C4A484] transition-all duration-300 hover:scale-105";
+    "p-3 text-[var(--fg)] border border-[var(--accent)]/45 rounded-full hover:bg-[var(--accent)] hover:text-[var(--bg)] hover:border-[var(--accent)] transition-all duration-300 hover:scale-105";
 
   return (
-    <div className="min-h-screen bg-[#121212] text-[#FFF2D7] overflow-x-hidden page-noise">
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--fg)] overflow-x-hidden page-noise">
+      <button
+        type="button"
+        onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+        className="theme-toggle"
+        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      >
+        {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+      </button>
+
       {/* Scroll timeline */}
       <aside
         className={`fixed right-6 top-1/2 z-40 hidden md:flex sidebar-panel ${
@@ -431,9 +453,9 @@ const Portfolio = () => {
         aria-label="Page sections"
       >
         <div className="relative flex flex-col justify-between h-64 py-1">
-          <div className="absolute right-0 top-0 bottom-0 w-px bg-[#C4A484]/25" aria-hidden="true" />
+          <div className="absolute right-0 top-0 bottom-0 w-px bg-[var(--accent)]/25" aria-hidden="true" />
           <div
-            className="absolute right-0 top-0 w-px bg-[#C4A484] transition-all duration-500 ease-out"
+            className="absolute right-0 top-0 w-px bg-[var(--accent)] transition-all duration-500 ease-out"
             style={{ height: `${(sections.indexOf(activeSection) / (sections.length - 1)) * 100}%` }}
             aria-hidden="true"
           />
@@ -449,8 +471,8 @@ const Portfolio = () => {
                 <span
                   className={`font-ui text-[10px] font-medium tracking-[0.18em] uppercase transition-all duration-300 ${
                     isActive
-                      ? 'opacity-100 text-[#C4A484]'
-                      : 'opacity-40 text-[#FFF2D7] group-hover:opacity-100 group-hover:text-[#C4A484]'
+                      ? 'opacity-100 text-[var(--accent)]'
+                      : 'opacity-40 text-[var(--fg)] group-hover:opacity-100 group-hover:text-[var(--accent)]'
                   }`}
                 >
                   {section}
@@ -465,7 +487,7 @@ const Portfolio = () => {
       <section id="home" className="min-h-[100svh] flex items-center justify-center relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <div className="text-center">
-              <h1 className="fade-in-up text-6xl sm:text-7xl md:text-9xl font-bold mb-4 text-[#FFF2D7] transition-all duration-300 cursor-pointer name-glow">
+              <h1 className="fade-in-up text-6xl sm:text-7xl md:text-9xl font-bold mb-4 text-[var(--fg)] transition-all duration-300 cursor-pointer name-glow">
                 Neiv Gupta
               </h1>
               
@@ -486,7 +508,7 @@ const Portfolio = () => {
 
       <button
         onClick={goNext}
-        className={`scroll-hint font-ui fixed bottom-10 left-1/2 z-50 flex flex-col items-center gap-2 text-[#C4A484]/80 hover:text-[#C4A484] transition-colors ${
+        className={`scroll-hint font-ui fixed bottom-10 left-1/2 z-50 flex flex-col items-center gap-2 text-[var(--accent)]/80 hover:text-[var(--accent)] transition-colors ${
           showScrollHint ? 'is-visible' : ''
         }`}
         aria-label="Scroll to next section"
@@ -512,17 +534,17 @@ const Portfolio = () => {
                 <img 
                   src={profileImage} 
                   alt="Neiv Gupta" 
-                  className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-transparent shadow-[0_20px_60px_rgba(0,0,0,0.35)] hover:border-[#C4A484]/50 transition-all duration-500"
+                  className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-transparent shadow-[0_20px_60px_var(--shadow-strong)] hover:border-[var(--accent)]/50 transition-all duration-500"
                 />
               </div>
             </Reveal>
             
             <Reveal className="flex-1" delay={120}>
               <div className="panel p-0 md:p-8">
-                <p className="font-ui text-sm font-medium tracking-[0.12em] text-[#C4A484] mb-5">
+                <p className="font-ui text-sm font-medium tracking-[0.12em] text-[var(--accent)] mb-5">
                   B.S. Computer Science · UCLA · Class of 2028
                 </p>
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-base md:text-lg">
+                <p className="text-[var(--fg)]/85 leading-relaxed text-base md:text-lg">
                   I am a third-year computer science student at UCLA. Currently, I am a researcher at the UCLA Computational Machine 
                   Learning Lab under Prof. Cho Jui-Hsieh, where I am researching the robustness of large audio language models against adversarial attacks. 
                   I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. This past summer I was a Software Engineer
@@ -531,7 +553,7 @@ const Portfolio = () => {
                   projects in these areas. When I'm not coding, you can find me cooking, running, weightlifting, and playing any sport!
                 </p>
                 <br />
-                <p className="text-[#FFF2D7]/85 leading-relaxed text-base md:text-lg">
+                <p className="text-[var(--fg)]/85 leading-relaxed text-base md:text-lg">
                   
                   
                  
@@ -557,16 +579,16 @@ const Portfolio = () => {
                 <Reveal className="experience-timeline-reveal" delay={idx * 120}>
                   <header className="experience-timeline-heading">
                     <h3 className="experience-company text-[1.781rem]/[2.138rem] font-bold accent-text mb-[0.475rem]">{exp.company}</h3>
-                    <div className="text-[#FFF2D7]/70">
+                    <div className="text-[var(--fg)]/70">
                       {exp.companyType && (
-                        <div className="mb-[0.238rem] flex flex-wrap items-center justify-start gap-[0.475rem] text-[0.831rem]/[1.188rem] italic text-[#C4A484]/80">
+                        <div className="mb-[0.238rem] flex flex-wrap items-center justify-start gap-[0.475rem] text-[0.831rem]/[1.188rem] italic text-[var(--accent)]/80">
                           <span>{exp.companyType}</span>
                           <a
                             href={exp.website}
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Visit ${exp.company} website`}
-                            className="transition-colors hover:text-[#C4A484]"
+                            className="transition-colors hover:text-[var(--accent)]"
                           >
                             <Globe className="h-[0.831rem] w-[0.831rem]" />
                           </a>
@@ -575,7 +597,7 @@ const Portfolio = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Visit ${exp.company} on LinkedIn`}
-                            className="transition-colors hover:text-[#C4A484]"
+                            className="transition-colors hover:text-[var(--accent)]"
                           >
                             <Linkedin className="h-[0.831rem] w-[0.831rem]" />
                           </a>
@@ -584,8 +606,8 @@ const Portfolio = () => {
                       <span className="text-[1.069rem]/[1.663rem] font-semibold">{exp.title}</span>
                       <div className="experience-timeline-meta flex flex-wrap items-center gap-x-[0.713rem] gap-y-[0.238rem] mt-[0.238rem]">
                         <span className="text-[0.831rem]/[1.188rem]">{exp.location}</span>
-                        <span className="text-[#C4A484]/40" aria-hidden="true">·</span>
-                        <span className="text-[0.831rem]/[1.188rem] tracking-wide text-[#C4A484]/80">
+                        <span className="text-[var(--accent)]/40" aria-hidden="true">·</span>
+                        <span className="text-[0.831rem]/[1.188rem] tracking-wide text-[var(--accent)]/80">
                         {exp.period}
                         </span>
                       </div>
@@ -593,7 +615,7 @@ const Portfolio = () => {
                   </header>
 
                   <article className="experience-timeline-card p-4 md:p-[1.663rem]">
-                    <p className="text-[0.831rem] text-[#FFF2D7]/70 leading-relaxed">
+                    <p className="text-[0.831rem] text-[var(--fg)]/70 leading-relaxed">
                       {exp.summary}
                     </p>
                   </article>
@@ -628,7 +650,7 @@ const Portfolio = () => {
                   )}
                   
                   <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                  <p className="text-[#FFF2D7]/55 mb-4 text-sm leading-relaxed flex-1">{project.description}</p>
+                  <p className="text-[var(--fg)]/55 mb-4 text-sm leading-relaxed flex-1">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-5">
                     {project.tags.map((tag, i) => (
@@ -712,7 +734,7 @@ const Portfolio = () => {
           </Reveal>
 
           <Reveal className="section-title" delay={100}>
-            <p className="font-ui text-sm font-medium tracking-[0.12em] text-[#C4A484] uppercase mb-4">
+            <p className="font-ui text-sm font-medium tracking-[0.12em] text-[var(--accent)] uppercase mb-4">
               A bit more about me
             </p>
           </Reveal>
@@ -721,7 +743,7 @@ const Portfolio = () => {
             <Reveal className="currently-cooking" delay={160}>
               <div className="currently-section-heading">
                 <div>
-                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[#C4A484] uppercase">
+                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[var(--accent)] uppercase">
                     Cooking 
                   </p>
 
@@ -735,7 +757,7 @@ const Portfolio = () => {
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
-                  <span className="font-ui text-xs tracking-[0.12em] text-[#C4A484]/75">
+                  <span className="font-ui text-xs tracking-[0.12em] text-[var(--accent)]/75">
                     {String(cookingSlide + 1).padStart(2, '0')} / {String(cookingGallery.length).padStart(2, '0')}
                   </span>
                   <button
@@ -768,7 +790,7 @@ const Portfolio = () => {
                       />
                       <div className="cooking-card-copy">
                         <h3 className="text-lg font-bold accent-text">{dish.title}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-[#FFF2D7]/70">{dish.caption}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-[var(--fg)]/70">{dish.caption}</p>
                       </div>
                     </article>
                   ))}
@@ -779,7 +801,7 @@ const Portfolio = () => {
             <Reveal className="currently-strava" delay={240}>
               <article className="current-service-card">
                 <div className="flex items-center justify-between">
-                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[#C4A484] uppercase">Strava</p>
+                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[var(--accent)] uppercase">Strava</p>
                   <a
                     href={stravaProfileUrl}
                     target="_blank"
@@ -792,18 +814,18 @@ const Portfolio = () => {
                 </div>
                 <h3 className="mt-2 text-2xl font-bold">Latest run</h3>
                 {strava.status === 'loading' && (
-                  <p className="mt-3 text-sm leading-relaxed text-[#FFF2D7]/70">Loading latest activity…</p>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--fg)]/70">Loading latest activity…</p>
                 )}
                 {strava.status === 'error' && (
-                  <p className="mt-3 text-sm leading-relaxed text-[#FFF2D7]/70">Couldn't load Strava right now.</p>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--fg)]/70">Couldn't load Strava right now.</p>
                 )}
                 {strava.status === 'ready' && !strava.data.hasActivity && (
-                  <p className="mt-3 text-sm leading-relaxed text-[#FFF2D7]/70">No recent activity.</p>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--fg)]/70">No recent activity.</p>
                 )}
                 {strava.status === 'ready' && strava.data.hasActivity && (
-                  <div className="mt-3 text-sm leading-relaxed text-[#FFF2D7]/70">
-                    <p className="text-lg text-[#FFF2D7] font-semibold">{strava.data.name}</p>
-                    <p className="mt-1 text-sm tracking-wide text-[#C4A484]/80">{strava.data.date}</p>
+                  <div className="mt-3 text-sm leading-relaxed text-[var(--fg)]/70">
+                    <p className="text-lg text-[var(--fg)] font-semibold">{strava.data.name}</p>
+                    <p className="mt-1 text-sm tracking-wide text-[var(--accent)]/80">{strava.data.date}</p>
 
                     <div className="strava-stats-grid">
                       <div className="strava-stat">
@@ -859,7 +881,7 @@ const Portfolio = () => {
             <Reveal className="currently-spotify" delay={280}>
               <article className="current-service-card">
                 <div className="flex items-center justify-between">
-                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[#C4A484] uppercase">Spotify</p>
+                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[var(--accent)] uppercase">Spotify</p>
                   <a
                     href={spotifyProfileUrl}
                     target="_blank"
@@ -877,13 +899,13 @@ const Portfolio = () => {
                   )}
                 </h3>
                 {spotify.status === 'loading' && (
-                  <p className="mt-3 text-sm leading-relaxed text-[#FFF2D7]/70">Loading…</p>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--fg)]/70">Loading…</p>
                 )}
                 {spotify.status === 'error' && (
-                  <p className="mt-3 text-sm leading-relaxed text-[#FFF2D7]/70">Couldn't load Spotify right now.</p>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--fg)]/70">Couldn't load Spotify right now.</p>
                 )}
                 {spotify.status === 'ready' && !spotify.data.track && (
-                  <p className="mt-3 text-sm leading-relaxed text-[#FFF2D7]/70">Nothing played recently.</p>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--fg)]/70">Nothing played recently.</p>
                 )}
                 {spotify.status === 'ready' && spotify.data.track && (
                   <>
@@ -891,7 +913,7 @@ const Portfolio = () => {
                       href={spotify.data.url ?? undefined}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 flex items-center gap-3 text-sm leading-relaxed text-[#FFF2D7]/70 hover:text-[#FFF2D7] transition-colors"
+                      className="mt-2 flex items-center gap-3 text-sm leading-relaxed text-[var(--fg)]/70 hover:text-[var(--fg)] transition-colors"
                     >
                       {spotify.data.albumArt && (
                         <img
@@ -901,14 +923,14 @@ const Portfolio = () => {
                         />
                       )}
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-[#FFF2D7] font-semibold">{spotify.data.track}</span>
+                        <span className="block truncate text-[var(--fg)] font-semibold">{spotify.data.track}</span>
                         <span className="block truncate">{spotify.data.artist}</span>
                       </span>
                     </a>
 
                     {spotify.data.recentTracks?.length > 0 && (
                       <div className="spotify-recent-list">
-                        <p className="font-ui text-[10px] font-medium tracking-[0.12em] text-[#C4A484]/70 uppercase">
+                        <p className="font-ui text-[10px] font-medium tracking-[0.12em] text-[var(--accent)]/70 uppercase">
                           Recently played
                         </p>
                         {spotify.data.recentTracks.slice(0, 5).map((t, idx) => (
@@ -921,7 +943,7 @@ const Portfolio = () => {
                           >
                             {t.albumArt && <img src={t.albumArt} alt="" />}
                             <span className="min-w-0 flex-1 truncate">
-                              <span className="text-[#FFF2D7]/90">{t.track}</span> — {t.artist}
+                              <span className="text-[var(--fg)]/90">{t.track}</span> — {t.artist}
                             </span>
                           </a>
                         ))}
@@ -944,7 +966,7 @@ const Portfolio = () => {
 
           <Reveal delay={100}>
             <div className="mb-10">
-              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[#C4A484]/30 rounded-[4px] text-[#C4A484]">
+              <span className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 border border-[var(--accent)]/30 rounded-[4px] text-[var(--accent)]">
                 <MapPin className="w-5 h-5" />
                 <span>Los Angeles, CA</span>
               </span>
@@ -983,8 +1005,8 @@ const Portfolio = () => {
       </section>
       
       {/* Footer */}
-      <footer className="border-t border-[#C4A484]/15 py-8">
-        <div className="max-w-6xl mx-auto px-6 text-center text-[#C4A484]/60">
+      <footer className="border-t border-[var(--accent)]/15 py-8">
+        <div className="max-w-6xl mx-auto px-6 text-center text-[var(--accent)]/60">
           <p className="text-sm tracking-wide">© 2026 Neiv Gupta</p>
         </div>
       </footer>

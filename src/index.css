@@ -1,20 +1,32 @@
 @import "tailwindcss";
 
 :root {
+  /* Fixed brand colours. The semantic tokens below point at these and swap
+     when the theme changes, so nothing else in the app hardcodes a colour. */
   --cream: #fff2d7;
   --coffee: #c4a484;
-  --coffee-soft: rgba(196, 164, 132, 0.35);
   --ink: #121212;
   --font-serif: "Roboto Serif", serif;
   --font-ui: "Space Grotesk", sans-serif;
+
+  /* Dark theme (the default look). */
+  --bg: var(--ink);
+  --fg: var(--cream);
+  --accent: var(--coffee);
+  --panel: #2a211d;
+  --fg-rgb: 255 242 215;
+  --accent-rgb: 196 164 132;
+  --shadow-soft: rgba(0, 0, 0, 0.28);
+  --shadow-strong: rgba(0, 0, 0, 0.35);
+  --noise-opacity: 0.07;
 
   font-family: var(--font-serif);
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: dark;
-  color: var(--cream);
-  background-color: var(--ink);
+  color: var(--fg);
+  background-color: var(--bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,13 +34,31 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Light theme: the dark palette inverted. The accent has to darken as well —
+   #c4a484 on cream is only 2.1:1, where the dark theme runs 8:1.
+   #523c23 restores that relationship (9.3:1) and keeps small accent text at AA. */
+:root[data-theme="light"] {
+  --bg: var(--cream);
+  --fg: var(--ink);
+  --accent: #523c23;
+  --panel: #f3e2bd;
+  --fg-rgb: 18 18 18;
+  --accent-rgb: 82 60 35;
+  --shadow-soft: rgba(0, 0, 0, 0.10);
+  --shadow-strong: rgba(0, 0, 0, 0.14);
+  --noise-opacity: 0.035;
+
+  color-scheme: light;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   font-family: var(--font-serif);
-  background-color: var(--ink);
-  color: var(--cream);
+  background-color: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .font-ui {

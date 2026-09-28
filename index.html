@@ -8,6 +8,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <title>personal-website</title>
+    <script>
+      // Set the theme before first paint so there is no flash of the wrong one.
+      (function () {
+        try {
+          document.documentElement.dataset.theme =
+            localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
