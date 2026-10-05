@@ -630,3 +630,25 @@
     transform: none;
   }
 }
+
+/* The icon swaps outright when the theme flips; ease it in so it does not pop. */
+.theme-toggle svg {
+  animation: theme-icon-in 350ms ease;
+}
+
+@keyframes theme-icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-40deg) scale(0.75);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle svg {
+    animation: none;
+  }
+}

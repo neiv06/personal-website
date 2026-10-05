@@ -114,12 +114,20 @@ const Portfolio = () => {
   const experienceTimelineRef = useRef(null);
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
+    const root = document.documentElement;
+
+    // Crossfade the palette instead of snapping to it.
+    root.classList.add('theme-transition');
+    root.dataset.theme = theme;
+
     try {
       localStorage.setItem('theme', theme);
     } catch {
       // private mode / blocked storage: the theme still applies for this visit
     }
+
+    const done = setTimeout(() => root.classList.remove('theme-transition'), 450);
+    return () => clearTimeout(done);
   }, [theme]);
 
   useEffect(() => {
