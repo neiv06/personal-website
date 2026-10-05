@@ -45,10 +45,12 @@
    #523c23 restores that relationship (9.3:1) and keeps small accent text at AA. */
 :root[data-theme="light"] {
   --bg: var(--cream);
-  --fg: var(--ink);
+  /* Dark brown rather than near-black, to sit in the same warm family as the
+     cream and the accent. 14.1:1 on the cream background. */
+  --fg: #2e2117;
   --accent: #523c23;
   --panel: #f3e2bd;
-  --fg-rgb: 18 18 18;
+  --fg-rgb: 46 33 23;
   --accent-rgb: 82 60 35;
   --shadow-soft: rgba(0, 0, 0, 0.10);
   --shadow-strong: rgba(0, 0, 0, 0.14);
