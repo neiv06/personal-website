@@ -559,7 +559,7 @@ const Portfolio = () => {
                   Intern at Pairwise Technologies, where I developed and deployed frontend and backend services for their AI-powered agentic 
                   recruiting platform. My primary interests are in machine learning and software development, and I am always working on new 
                   projects in these areas. When I'm not coding, you can find me cooking, running, weightlifting, and watching or playing any sport. I am originally 
-                  from the SF Bay Area, CA, specifically Cupertino, and I'm a huge 49ers/Sharks/Warriors fan!
+                  from the SF Bay Area, CA (specifically Cupertino), so I'm a huge 49ers, Sharks, and Warriors fan!
                 </p>
                 <br />
                 <p className="text-[var(--fg)]/85 leading-relaxed text-base md:text-lg">
