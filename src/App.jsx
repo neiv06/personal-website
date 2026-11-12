@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Globe, MapPin, Sun, Moon } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ChevronLeft, ChevronRight, Globe, MapPin, Sun, Moon } from 'lucide-react';
 import profileImage from './images/headshot.JPG';
 import cudaFireImage from './images/CudaFire.png';
 import bruinMarketImage from './images/BruinMarket.png';
@@ -10,7 +10,12 @@ import './App.css';
 const stravaProfileUrl = 'https://www.strava.com/athletes/2047652902';
 const spotifyProfileUrl = 'https://open.spotify.com/user/uhvto2o8rz5yv89376o7y1noi';
 
-const sections = ['home', 'introduction', 'experiences', 'projects', 'skills', 'interests', 'contact'];
+const sections = ['introduction', 'experiences', 'projects', 'skills', 'interests', 'contact'];
+
+const pageFromHash = () => {
+  const id = window.location.hash.slice(1);
+  return sections.includes(id) ? id : 'introduction';
+};
 
 const Reveal = ({ children, className = '', delay = 0, asHeading = false }) => {
   const ref = useRef(null);
@@ -102,15 +107,12 @@ const Portfolio = () => {
   const [theme, setTheme] = useState(
     () => document.documentElement.dataset.theme || 'dark'
   );
-  const [activeSection, setActiveSection] = useState('home');
-  const [showScrollHint, setShowScrollHint] = useState(true);
-  const [showTimeline, setShowTimeline] = useState(false);
+  const [page, setPage] = useState(pageFromHash);
   const [cookingSlide, setCookingSlide] = useState(0);
   const [cookingWindowHeight, setCookingWindowHeight] = useState(null);
   const cookingTrackRef = useRef(null);
   const [strava, setStrava] = useState({ status: 'loading' });
   const [spotify, setSpotify] = useState({ status: 'loading' });
-  const idleTimerRef = useRef(null);
   const experienceTimelineRef = useRef(null);
 
   useEffect(() => {
@@ -131,39 +133,27 @@ const Portfolio = () => {
   }, [theme]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const y = window.scrollY;
-      setShowTimeline(y > 40);
-
-      const timeline = experienceTimelineRef.current;
-      if (timeline) {
-        const timelineRect = timeline.getBoundingClientRect();
-        const progress = Math.min(
-          1,
-          Math.max(0, (window.innerHeight * 0.7 - timelineRect.top) / timelineRect.height)
-        );
-        const fillableHeight = Math.max(0, timeline.offsetHeight - 24);
-        timeline.style.setProperty('--timeline-fill-height', `${progress * fillableHeight}px`);
-      }
-
-      if (y <= 40) {
-        setShowScrollHint(true);
-        clearTimeout(idleTimerRef.current);
-      } else {
-        setShowScrollHint(false);
-      }
-
-      const viewportMid = y + window.innerHeight / 3;
-      let current = sections[0];
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= viewportMid) {
-          current = id;
-        }
-      }
-      setActiveSection(current);
+    const onHashChange = () => {
+      setPage(pageFromHash());
+      window.scrollTo(0, 0);
     };
-    
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const timeline = experienceTimelineRef.current;
+      if (!timeline) return;
+      const timelineRect = timeline.getBoundingClientRect();
+      const progress = Math.min(
+        1,
+        Math.max(0, (window.innerHeight * 0.7 - timelineRect.top) / timelineRect.height)
+      );
+      const fillableHeight = Math.max(0, timeline.offsetHeight - 24);
+      timeline.style.setProperty('--timeline-fill-height', `${progress * fillableHeight}px`);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
     handleScroll();
@@ -171,29 +161,7 @@ const Portfolio = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
-  }, []);
-
-  useEffect(() => {
-    const onActivity = () => {
-      if (window.scrollY <= 40) {
-        setShowScrollHint(true);
-        clearTimeout(idleTimerRef.current);
-        return;
-      }
-
-      setShowScrollHint(false);
-      clearTimeout(idleTimerRef.current);
-      idleTimerRef.current = setTimeout(() => setShowScrollHint(true), 2200);
-    };
-
-    const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'wheel', 'scroll'];
-    events.forEach((event) => window.addEventListener(event, onActivity, { passive: true }));
-
-    return () => {
-      events.forEach((event) => window.removeEventListener(event, onActivity));
-      clearTimeout(idleTimerRef.current);
-    };
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     const activeCard = cookingTrackRef.current?.children[cookingSlide];
@@ -417,19 +385,6 @@ const Portfolio = () => {
     }
   ];
   
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const goNext = () => {
-    const idx = sections.indexOf(activeSection);
-    if (idx < sections.length - 1) {
-      scrollToSection(sections[idx + 1]);
-    } else {
-      scrollToSection('home');
-    }
-  };
-
   const showPreviousDish = () => {
     setCookingSlide((current) => (current - 1 + cookingGallery.length) % cookingGallery.length);
   };
@@ -443,137 +398,92 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--fg)] overflow-x-hidden page-noise">
-      <button
-        type="button"
-        onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
-        className="theme-toggle"
-        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-        title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-      >
-        {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-      </button>
+      <header className="site-header">
+        <div className="site-header-inner">
+          <a href="#introduction" className="site-name font-display">
+            Neiv Gupta
+          </a>
 
-      {/* Scroll timeline */}
-      <aside
-        className={`fixed right-6 top-1/2 z-40 hidden md:flex sidebar-panel ${
-          showTimeline ? 'is-visible' : ''
-        }`}
-        aria-label="Page sections"
-      >
-        <div className="relative flex flex-col justify-between h-64 py-1">
-          <div className="absolute right-0 top-0 bottom-0 w-px bg-[var(--accent)]/25" aria-hidden="true" />
-          <div
-            className="absolute right-0 top-0 w-px bg-[var(--accent)] transition-all duration-500 ease-out"
-            style={{ height: `${(sections.indexOf(activeSection) / (sections.length - 1)) * 100}%` }}
-            aria-hidden="true"
-          />
-          {sections.map((section) => {
-            const isActive = activeSection === section;
-            return (
-              <button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className="group relative flex items-center justify-end pr-4 focus:outline-none"
-                aria-current={isActive ? 'true' : undefined}
-              >
-                <span
-                  className={`font-ui text-[10px] font-medium tracking-[0.18em] uppercase transition-all duration-300 ${
-                    isActive
-                      ? 'opacity-100 text-[var(--accent)]'
-                      : 'opacity-40 text-[var(--fg)] group-hover:opacity-100 group-hover:text-[var(--accent)]'
-                  }`}
+          <div className="flex items-center gap-4 md:gap-6 min-w-0 max-w-full">
+            <nav aria-label="Pages" className="site-nav">
+              {sections.map((section) => (
+                <a
+                  key={section}
+                  href={`#${section}`}
+                  className={`site-nav-link font-display ${page === section ? 'is-active' : ''}`}
+                  aria-current={page === section ? 'page' : undefined}
                 >
                   {section}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </aside>
-      
-      {/* Hero Section */}
-      <section id="home" className="min-h-[100svh] flex items-center justify-center relative">
-        <div className="max-w-6xl mx-auto px-6 z-10">
-          <div className="text-center">
-              <h1 className="fade-in-up text-6xl sm:text-7xl md:text-9xl font-bold mb-4 text-[var(--fg)] transition-all duration-300 cursor-pointer name-glow">
-                Neiv Gupta
-              </h1>
-              
-              <div className="fade-in-up-delay-3 flex justify-center space-x-4">
-                <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className={iconBtn}>
-                  <Github className="w-6 h-6" />
                 </a>
-                <a href="https://www.linkedin.com/in/neiv-gupta/" target="_blank" rel="noopener noreferrer" className={iconBtn}>
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                <a href="mailto:neiv06@g.ucla.edu" className={iconBtn}>
-                  <Mail className="w-6 h-6" />
-                </a>
-              </div>
+              ))}
+            </nav>
           </div>
         </div>
-      </section>
 
-      <button
-        onClick={goNext}
-        className={`scroll-hint font-ui fixed bottom-10 left-1/2 z-50 flex flex-col items-center gap-2 text-[var(--accent)]/80 hover:text-[var(--accent)] transition-colors ${
-          showScrollHint ? 'is-visible' : ''
-        }`}
-        aria-label="Scroll to next section"
-      >
-        <span className="text-xs tracking-[0.2em] uppercase">
-          {activeSection === 'contact' ? 'Top' : 'Scroll'}
-        </span>
-        <ChevronDown className={`w-5 h-5 ${activeSection === 'contact' ? 'rotate-180' : ''}`} />
-      </button>
-      
+        <button
+          type="button"
+          onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+          className="theme-toggle theme-toggle-under"
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+        </button>
+      </header>
+
+      <main key={page} className="page-enter">
       {/* Introduction Section */}
-      <section id="introduction" className="md:min-h-screen flex items-center py-14 md:py-20 relative">
-        <div className="max-w-6xl mx-auto px-6 z-10">
-          <Reveal asHeading className="section-title">
-            <h2 className="text-[2.125rem] md:text-[2.625rem] font-bold mb-8 md:mb-12">
-              Introduction
-            </h2>
+      {page === 'introduction' && (
+      <section id="introduction" className="py-12 md:py-16 relative">
+        <div className="max-w-2xl mx-auto px-6 z-10">
+          <Reveal className="flex justify-center">
+            <img
+              src={profileImage}
+              alt="Neiv Gupta"
+              className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-[4px] object-cover border border-transparent shadow-[0_20px_60px_var(--shadow-strong)] hover:border-[var(--accent)]/50 transition-all duration-500"
+            />
           </Reveal>
-          
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
-            <Reveal className="flex-shrink-0">
-              <div className="relative">
-                <img 
-                  src={profileImage} 
-                  alt="Neiv Gupta" 
-                  className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-[4px] object-cover border border-transparent shadow-[0_20px_60px_var(--shadow-strong)] hover:border-[var(--accent)]/50 transition-all duration-500"
-                />
-              </div>
-            </Reveal>
-            
-            <Reveal className="flex-1" delay={120}>
-              <div className="panel p-0 md:p-8">
-                <p className="font-ui text-sm font-medium tracking-[0.12em] text-[var(--accent)] mb-5">
-                  B.S. Computer Science · UCLA · Class of 2028
-                </p>
-                <p className="text-[var(--fg)]/85 leading-relaxed text-base md:text-lg">
-                  I am a third-year computer science student at UCLA. Currently, I am a researcher at the UCLA Computational Machine 
-                  Learning Lab under Prof. Cho Jui-Hsieh, where I am researching the robustness of large audio language models against adversarial attacks. 
+
+          <Reveal delay={120}>
+            <div className="mt-10">
+              <p className="font-ui text-sm font-medium tracking-[0.12em] text-[var(--accent)] mb-5 text-center">
+                B.S. Computer Science · UCLA · Class of 2028
+              </p>
+              <div className="space-y-5 text-[var(--fg)]/85 leading-relaxed text-base md:text-lg">
+                <p>Hi, I'm Neiv.</p>
+                <p>
+                  I am a third-year computer science student at UCLA. Currently, I am a researcher at the UCLA Computational Machine
+                  Learning Lab under Prof. Cho Jui-Hsieh, where I am researching the robustness of large audio language models against adversarial attacks.
                   I'm also involved in the UCLA tech community through ACM-AI and Glitch UCLA. This past summer I was a Software Engineer
-                  Intern at Pairwise Technologies, where I developed and deployed frontend and backend services for their AI-powered agentic 
-                  recruiting platform. My primary interests are in machine learning and software development, and I am always working on new 
-                  projects in these areas. When I'm not coding, you can find me cooking, running, weightlifting, and watching or playing any sport. I am originally 
+                  Intern at Pairwise Technologies, where I developed and deployed frontend and backend services for their AI-powered agentic
+                  recruiting platform. My primary interests are in machine learning and software development, and I am always working on new
+                  projects in these areas.
+                </p>
+                <p>
+                  When I'm not coding, you can find me cooking, running, weightlifting, and watching or playing any sport. I am originally
                   from the SF Bay Area, CA (specifically Cupertino), so I'm a huge 49ers, Sharks, and Warriors fan!
                 </p>
-                <br />
-                <p className="text-[var(--fg)]/85 leading-relaxed text-base md:text-lg">
-                  
-                  
-                 
-                </p>
               </div>
-            </Reveal>
-          </div>
+
+              <div className="flex justify-center gap-3 mt-8">
+                <a href="https://www.github.com/neiv06" target="_blank" rel="noopener noreferrer" className={iconBtn} aria-label="GitHub">
+                  <Github className="w-5 h-5" />
+                </a>
+                <a href="https://www.linkedin.com/in/neiv-gupta/" target="_blank" rel="noopener noreferrer" className={iconBtn} aria-label="LinkedIn">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="mailto:neiv06@g.ucla.edu" className={iconBtn} aria-label="Email">
+                  <Mail className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
+      )}
       
       {/* Experiences Section */}
+      {page === 'experiences' && (
       <section id="experiences" className="md:min-h-screen py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading className="section-title">
@@ -587,7 +497,7 @@ const Portfolio = () => {
               <li key={exp.company} className="experience-timeline-item">
                 <Reveal className="experience-timeline-reveal" delay={idx * 120}>
                   <header className="experience-timeline-heading">
-                    <h3 className="experience-company text-[1.781rem]/[2.138rem] font-bold accent-text mb-[0.475rem]">{exp.company}</h3>
+                    <h3 className="experience-company font-display text-[1.781rem]/[2.138rem] font-normal accent-text mb-[0.475rem]">{exp.company}</h3>
                     <div className="text-[var(--fg)]/70">
                       {exp.companyType && (
                         <div className="mb-[0.238rem] flex flex-wrap items-center justify-start gap-[0.475rem] text-[0.831rem]/[1.188rem] italic text-[var(--accent)]/80">
@@ -634,8 +544,10 @@ const Portfolio = () => {
           </ol>
         </div>
       </section>
+      )}
       
       {/* Projects Section */}
+      {page === 'projects' && (
       <section id="projects" className="md:min-h-screen py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading className="section-title">
@@ -658,7 +570,7 @@ const Portfolio = () => {
                     </div>
                   )}
                   
-                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                  <h3 className="font-display text-xl font-normal mb-3">{project.title}</h3>
                   <p className="text-[var(--fg)]/55 mb-4 text-sm leading-relaxed flex-1">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-5">
@@ -706,8 +618,10 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+      )}
       
       {/* Skills Section */}
+      {page === 'skills' && (
       <section id="skills" className="md:min-h-screen py-14 md:py-20 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading className="section-title">
@@ -734,8 +648,10 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+      )}
       
       {/* Interests Section */}
+      {page === 'interests' && (
       <section id="interests" className="py-14 md:py-8 relative">
         <div className="max-w-6xl mx-auto px-6 z-10">
           <Reveal asHeading className="section-title">
@@ -743,7 +659,7 @@ const Portfolio = () => {
           </Reveal>
 
           <Reveal className="section-title" delay={100}>
-            <p className="font-ui text-sm font-medium tracking-[0.12em] text-[var(--accent)] uppercase mb-4">
+            <p className="font-ui text-sm font-medium tracking-[0.12em] text-[var(--accent)] lowercase mb-4">
               A bit more about me
             </p>
           </Reveal>
@@ -752,7 +668,7 @@ const Portfolio = () => {
             <Reveal className="currently-cooking" delay={160}>
               <div className="currently-section-heading">
                 <div>
-                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[var(--accent)] uppercase">
+                  <p className="font-display text-xs font-normal tracking-[0.12em] text-[var(--accent)] lowercase">
                     Cooking 
                   </p>
 
@@ -810,7 +726,7 @@ const Portfolio = () => {
             <Reveal className="currently-strava" delay={240}>
               <article className="current-service-card">
                 <div className="flex items-center justify-between">
-                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[var(--accent)] uppercase">Strava</p>
+                  <p className="font-display text-xs font-normal tracking-[0.12em] text-[var(--accent)] lowercase">Strava</p>
                   <a
                     href={stravaProfileUrl}
                     target="_blank"
@@ -890,7 +806,7 @@ const Portfolio = () => {
             <Reveal className="currently-spotify" delay={280}>
               <article className="current-service-card">
                 <div className="flex items-center justify-between">
-                  <p className="font-ui text-xs font-medium tracking-[0.12em] text-[var(--accent)] uppercase">Spotify</p>
+                  <p className="font-display text-xs font-normal tracking-[0.12em] text-[var(--accent)] lowercase">Spotify</p>
                   <a
                     href={spotifyProfileUrl}
                     target="_blank"
@@ -939,7 +855,7 @@ const Portfolio = () => {
 
                     {spotify.data.recentTracks?.length > 0 && (
                       <div className="spotify-recent-list">
-                        <p className="font-ui text-[10px] font-medium tracking-[0.12em] text-[var(--accent)]/70 uppercase">
+                        <p className="font-ui text-[10px] font-medium tracking-[0.12em] text-[var(--accent)]/70 lowercase">
                           Recently played
                         </p>
                         {spotify.data.recentTracks.slice(0, 5).map((t, idx) => (
@@ -965,8 +881,10 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* Contact Section */}
+      {page === 'contact' && (
       <section id="contact" className="md:min-h-screen flex items-center py-16 md:py-20 relative">
         <div className="max-w-2xl mx-auto px-6 text-center z-10">
           <Reveal asHeading>
@@ -1012,13 +930,16 @@ const Portfolio = () => {
           </Reveal>
         </div>
       </section>
+      )}
       
-      {/* Footer */}
-      <footer className="border-t border-[var(--accent)]/15 py-8">
+      </main>
+
+      <footer className="py-8">
         <div className="max-w-6xl mx-auto px-6 text-center text-[var(--accent)]/60">
           <p className="text-sm tracking-wide">© 2026 Neiv Gupta</p>
         </div>
       </footer>
+
     </div>
   );
 };

@@ -8,6 +8,7 @@
   --ink: #121212;
   --font-serif: "Roboto Serif", serif;
   --font-ui: "Space Grotesk", sans-serif;
+  --font-mono: "Space Mono", monospace;
 
   /* Dark theme (the default look). */
   --bg: var(--ink);
@@ -101,4 +102,21 @@ body {
 
 .font-ui {
   font-family: var(--font-ui);
+}
+
+/* Site-wide style: every piece of text renders in lowercase. */
+*,
+*::before,
+*::after,
+input::placeholder,
+textarea::placeholder {
+  text-transform: lowercase;
+}
+
+/* Name, header links and page headings use Space Mono; body text is Roboto
+   Serif and small labels (.font-ui) are Space Grotesk. */
+.font-display,
+h1,
+h2 {
+  font-family: var(--font-mono);
 }
