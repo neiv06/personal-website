@@ -659,7 +659,7 @@ const Portfolio = () => {
           </Reveal>
 
           <Reveal className="section-title" delay={100}>
-            <p className="font-ui text-sm font-medium tracking-[0.12em] text-[var(--accent)] lowercase mb-4">
+            <p className="text-sm font-medium tracking-[0.12em] text-[var(--accent)] lowercase mb-4">
               A bit more about me
             </p>
           </Reveal>
@@ -668,7 +668,7 @@ const Portfolio = () => {
             <Reveal className="currently-cooking" delay={160}>
               <div className="currently-section-heading">
                 <div>
-                  <p className="font-display text-xs font-normal tracking-[0.12em] text-[var(--accent)] lowercase">
+                  <p className="font-display text-base font-normal tracking-[0.12em] text-[var(--accent)] lowercase">
                     Cooking 
                   </p>
 
@@ -726,7 +726,7 @@ const Portfolio = () => {
             <Reveal className="currently-strava" delay={240}>
               <article className="current-service-card">
                 <div className="flex items-center justify-between">
-                  <p className="font-display text-xs font-normal tracking-[0.12em] text-[var(--accent)] lowercase">Strava</p>
+                  <p className="font-display text-base font-normal tracking-[0.12em] text-[var(--accent)] lowercase">Strava</p>
                   <a
                     href={stravaProfileUrl}
                     target="_blank"
@@ -806,7 +806,7 @@ const Portfolio = () => {
             <Reveal className="currently-spotify" delay={280}>
               <article className="current-service-card">
                 <div className="flex items-center justify-between">
-                  <p className="font-display text-xs font-normal tracking-[0.12em] text-[var(--accent)] lowercase">Spotify</p>
+                  <p className="font-display text-base font-normal tracking-[0.12em] text-[var(--accent)] lowercase">Spotify</p>
                   <a
                     href={spotifyProfileUrl}
                     target="_blank"
